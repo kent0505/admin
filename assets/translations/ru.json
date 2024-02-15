@@ -1,0 +1,48 @@
+{
+    "aaa"                  : "Дом",
+    "buttonPickImageText"  : "Выбрать изображение",
+
+    "usernameHintText"     : "Имя пользователя",
+    "passwordHintText"     : "Пароль",
+    "confirmHintText"      : "Подтвердить пароль",
+    "loginText"            : "Логин",
+    "registerText"         : "Регистрация",
+    
+    "alertButtonCancel"    : "Отмена",
+    "alertButtonYes"       : "Да",
+    "alertDeleteCategory"  : "Удалить категорию?",
+    "alertDeleteBlog"      : "Удалить блог?",
+    "alertDeleteContent"   : "Удалить контент?",
+    "alertOpenUrl"         : "Открыть URL\n{} ?",
+    "alertLogout"          : "Выйти из аккаунта?",
+  
+    "tooltipOpenUrl"       : "Открыть URL",
+    "tooltipLogs"          : "Логи",
+    "tooltipAdd"           : "Добавить",
+    "tooltipDelete"        : "Удалить",
+    "tooltipLogout"        : "Выйти из аккаунта",
+    "tooltipRemoveImage"   : "Убрать файл",
+  
+    "toastLoaded"          : "Загружено",
+    "toastError"           : "Ошибка",
+    "toastNull"            : "Пусто",
+    "toastLoginError"      : "Имя пользователя или пароль неверны",
+    "toastUserAdded"       : "Админ добавлен",
+    "toastPasswordError"   : "Пароли не совпали",
+    "toastUserDataError"   : "Данные должны быть разными",
+    "toastUserUpdated"     : "Данные админа изменены",
+    "toastLogsDeleted"     : "Логи удалены",
+    "toastCategoryAdded"   : "Категорий добавлен",
+    "toastCategoryUpdated" : "Категорий изменен",
+    "toastCategoryDeleted" : "Категорий удален",
+    "toastBlogAdded"       : "Блог добавлен",
+    "toastBlogUpdated"     : "Блог изменен",
+    "toastBlogDeleted"     : "Блог удален",
+    "toastContentAdded"    : "Контент добавлен",
+    "toastContentUpdated"  : "Контент изменен",
+    "toastContentDeleted"  : "Контент удален",
+    "toastImageAdded"      : "Изображение добавлен",
+    "toastImageUpdated"    : "Изображение изменен",
+
+    "editImagePageTitle" : "Редактировать"
+}

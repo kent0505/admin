@@ -1,0 +1,48 @@
+{
+    "aaa"                  : "Home",
+    "buttonPickImageText"  : "Pick image",
+
+    "usernameHintText"     : "Username",
+    "passwordHintText"     : "Password",
+    "confirmHintText"      : "Confirm password",
+    "loginText"            : "Login",
+    "registerText"         : "Register",
+    
+    "alertButtonCancel"    : "Cancel",
+    "alertButtonYes"       : "Yes",
+    "alertDeleteCategory"  : "Delete category?",
+    "alertDeleteBlog"      : "Delete blog?",
+    "alertDeleteContent"   : "Delete content?",
+    "alertOpenUrl"         : "Open URL\n{} ?",
+    "alertLogout"          : "Logout?",
+  
+    "tooltipOpenUrl"       : "Open URL",
+    "tooltipLogs"          : "Logs",
+    "tooltipAdd"           : "Add",
+    "tooltipDelete"        : "Delete",
+    "tooltipLogout"        : "Logout",
+    "tooltipRemoveImage"   : "Remove image",
+  
+    "toastLoaded"          : "Loaded",
+    "toastError"           : "Error",
+    "toastNull"            : "Null",
+    "toastLoginError"      : "Username or password invalid",
+    "toastUserAdded"       : "User added",
+    "toastPasswordError"   : "Passwords did not match",
+    "toastUserDataError"   : "Data must be different",
+    "toastUserUpdated"     : "User updated",
+    "toastLogsDeleted"     : "Logs deleted",
+    "toastCategoryAdded"   : "Category added",
+    "toastCategoryUpdated" : "Category updated",
+    "toastCategoryDeleted" : "Category deleted",
+    "toastBlogAdded"       : "Blog added",
+    "toastBlogUpdated"     : "Blog updated",
+    "toastBlogDeleted"     : "Blog deleted",
+    "toastContentAdded"    : "Content added",
+    "toastContentUpdated"  : "Content updated",
+    "toastContentDeleted"  : "Content deleted",
+    "toastImageAdded"      : "Image added",
+    "toastImageUpdated"    : "Image updated",
+
+    "editImagePageTitle" : "Edit"
+}
