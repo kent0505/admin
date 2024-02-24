@@ -19,20 +19,16 @@ class _SplashPageState extends State<SplashPage> {
     await Utils.getToken();
 
     final decodedToken = JwtDecoder.tryDecode(Const.token);
-
     final now = DateTime.now().millisecondsSinceEpoch / 1000;
 
-    if (Const.token.isNotEmpty && decodedToken != null) {
-      if (decodedToken['expiry'] >= now) {
-        Future.delayed(const Duration(seconds: 2), () {
-          context.go(AppRoutes.homePage);
-        });
-        return;
-      }
-    }
-
     Future.delayed(const Duration(seconds: 2), () {
-      context.go(AppRoutes.authPage);
+      if (Const.token.isNotEmpty &&
+          decodedToken != null &&
+          decodedToken['expiry'] >= now) {
+        context.go(AppRoutes.homePage);
+      } else {
+        context.go(AppRoutes.authPage);
+      }
     });
   }
 

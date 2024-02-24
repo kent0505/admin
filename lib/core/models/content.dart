@@ -23,3 +23,17 @@ class Content {
     );
   }
 }
+
+// class ContentModel {
+//   final int? id;
+//   final String title;
+//   final String index;
+//   final int? bid;
+
+//   ContentModel({
+//     this.id,
+//     required this.title,
+//     required this.index,
+//     this.bid,
+//   });
+// }

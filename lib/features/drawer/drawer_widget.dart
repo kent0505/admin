@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/constants/constants.dart';
@@ -7,7 +6,6 @@ import '../../core/router/app_routes.dart';
 import '../../core/utils.dart';
 import '../../core/widgets/action/app_title.dart';
 import '../../core/widgets/action/logo_widget.dart';
-import '../auth/bloc/auth_bloc.dart';
 
 class DrawerWidget extends StatefulWidget {
   const DrawerWidget({super.key});
@@ -73,9 +71,10 @@ class _DrawerHeader extends StatelessWidget {
                     Utils.showAlertDialog(
                       context,
                       Const.alertLogout,
-                      () {
-                        context.read<AuthBloc>().add(LogoutEvent());
-                        context.go(AppRoutes.authPage);
+                      () async {
+                        await Utils.saveData('token', '').then((_) {
+                          context.go(AppRoutes.authPage);
+                        });
                       },
                     );
                   },

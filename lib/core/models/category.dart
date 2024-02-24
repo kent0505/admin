@@ -20,3 +20,17 @@ class Category {
     );
   }
 }
+
+class CategoryModel {
+  final int? id;
+  final String title;
+  final String index;
+  final String type;
+
+  CategoryModel({
+    this.id,
+    required this.title,
+    required this.index,
+    required this.type,
+  });
+}

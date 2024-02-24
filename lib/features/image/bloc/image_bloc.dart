@@ -19,12 +19,16 @@ class ImageBloc extends Bloc<ImageEvent, ImageState> {
 
   ImageBloc() : super(ImageInitial()) {
     on<RemoveImageEvent>((event, emit) async {
-      print('REMOVE IMAGE EVENT');
-      image = null;
-      await Future.delayed(const Duration(milliseconds: 600), () {
-        print('IMAGE REMOVED');
-        emit(ImageInitial());
-      });
+      if (image != null) {
+        print('REMOVE IMAGE EVENT');
+        image = null;
+        await Future.delayed(const Duration(milliseconds: 600), () {
+          print('IMAGE REMOVED');
+          emit(ImageInitial());
+        });
+      } else {
+        print('IMAGE NULL');
+      }
     });
 
     on<PickImageEvent>((event, emit) async {

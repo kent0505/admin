@@ -18,19 +18,19 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends State<UserPage> {
-  final _controller1 = TextEditingController();
-  final _controller2 = TextEditingController();
-  final _controller3 = TextEditingController();
-  final _controller4 = TextEditingController();
-  final _controller5 = TextEditingController();
+  final controller1 = TextEditingController();
+  final controller2 = TextEditingController();
+  final controller3 = TextEditingController();
+  final controller4 = TextEditingController();
+  final controller5 = TextEditingController();
 
   @override
   void dispose() {
-    _controller1.dispose();
-    _controller2.dispose();
-    _controller3.dispose();
-    _controller4.dispose();
-    _controller5.dispose();
+    controller1.dispose();
+    controller2.dispose();
+    controller3.dispose();
+    controller4.dispose();
+    controller5.dispose();
     super.dispose();
   }
 
@@ -41,35 +41,35 @@ class _UserPageState extends State<UserPage> {
       appBar: AppBar(
         title: const Text('User'),
       ),
-      body: BlocListener<UserBloc, UserState>(
-        listener: (context, state) {
-          if (state is UserSuccessState) {
-            Utils.showToast(context, state.message, state.status);
-            context.go(AppRoutes.authPage);
-          }
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: BlocListener<UserBloc, UserState>(
+          listener: (context, state) {
+            if (state is UserSuccessState) {
+              Utils.showToast(context, state.message, state.status);
+              context.go(AppRoutes.authPage);
+            }
 
-          if (state is UserErrorState) {
-            Utils.showToast(context, state.message, state.status, true);
-          }
-        },
-        child: BlocBuilder<UserBloc, UserState>(
-          builder: (context, state) {
-            return Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
+            if (state is UserErrorState) {
+              Utils.showToast(context, state.message, state.status, true);
+            }
+          },
+          child: BlocBuilder<UserBloc, UserState>(
+            builder: (context, state) {
+              return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text('Current'),
                   const SizedBox(height: 10),
                   UsernameField(
-                    controller: _controller1,
+                    controller: controller1,
                     hintText: Const.usernameHintText,
                     enabled: state is UserInitial || state is UserVisibleState,
                   ),
                   const SizedBox(height: 20),
                   PasswordField(
-                    controller: _controller2,
+                    controller: controller2,
                     hintText: Const.passwordHintText,
                     enabled: state is UserInitial || state is UserVisibleState,
                     visible: state is UserInitial || state is UserLoadingState,
@@ -81,13 +81,13 @@ class _UserPageState extends State<UserPage> {
                   const Text('New'),
                   const SizedBox(height: 10),
                   UsernameField(
-                    controller: _controller3,
+                    controller: controller3,
                     hintText: 'New username',
                     enabled: state is UserInitial || state is UserVisibleState,
                   ),
                   const SizedBox(height: 20),
                   PasswordField(
-                    controller: _controller4,
+                    controller: controller4,
                     hintText: 'New password',
                     enabled: state is UserInitial || state is UserVisibleState,
                     visible: state is UserInitial || state is UserLoadingState,
@@ -97,7 +97,7 @@ class _UserPageState extends State<UserPage> {
                   ),
                   const SizedBox(height: 20),
                   PasswordField(
-                    controller: _controller5,
+                    controller: controller5,
                     hintText: 'Confirm password',
                     enabled: state is UserInitial || state is UserVisibleState,
                     visible: state is UserInitial || state is UserLoadingState,
@@ -111,18 +111,18 @@ class _UserPageState extends State<UserPage> {
                     loading: state is UserLoadingState,
                     onTap: () {
                       context.read<UserBloc>().add(UpdateEvent(
-                            _controller1.text,
-                            _controller2.text,
-                            _controller3.text,
-                            _controller4.text,
-                            _controller5.text,
+                            controller1.text,
+                            controller2.text,
+                            controller3.text,
+                            controller4.text,
+                            controller5.text,
                           ));
                     },
                   ),
                 ],
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );

@@ -12,7 +12,11 @@ class BlogBloc extends Bloc<BlogEvent, BlogState> {
 
   BlogBloc() : super(BlogInitial()) {
     on<AddBlogEvent>((event, emit) async {
-      if (event.blog.title.isNotEmpty) {
+      final filled = event.blog.title.isNotEmpty &&
+          event.blog.index.isNotEmpty &&
+          event.blog.cid.isNotEmpty;
+
+      if (filled) {
         emit(BlogLoadingState());
 
         int? status = await _repository.addBlog(event.blog);
@@ -20,18 +24,19 @@ class BlogBloc extends Bloc<BlogEvent, BlogState> {
         if (status == 200) {
           emit(BlogSuccessState(Const.toastBlogAdded, status!));
         } else {
-          print('error 1');
-          print(status);
           emit(BlogErrorState(Const.toastError, status));
         }
       } else {
-        print('error 2');
         emit(BlogErrorState(Const.toastNull, null));
       }
     });
 
     on<UpdateBlogEvent>((event, emit) async {
-      if (event.blog.title.isNotEmpty) {
+      final filled = event.blog.title.isNotEmpty &&
+          event.blog.index.isNotEmpty &&
+          event.blog.cid.isNotEmpty;
+
+      if (filled) {
         emit(BlogLoadingState());
 
         int? status = await _repository.updateBlog(event.blog);
@@ -47,7 +52,7 @@ class BlogBloc extends Bloc<BlogEvent, BlogState> {
     });
 
     on<DeleteBlogEvent>((event, emit) async {
-      int? status = await _repository.deleteBlog(event.blog);
+      int? status = await _repository.deleteBlog(event.id);
 
       if (status == 200) {
         emit(BlogSuccessState(Const.toastBlogDeleted, status!));

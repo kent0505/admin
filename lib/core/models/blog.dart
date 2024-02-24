@@ -23,3 +23,17 @@ class Blog {
     );
   }
 }
+
+class BlogModel {
+  final int? id;
+  final String title;
+  final String index;
+  final String cid;
+
+  BlogModel({
+    this.id,
+    required this.title,
+    required this.index,
+    required this.cid,
+  });
+}

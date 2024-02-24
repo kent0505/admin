@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/constants/constants.dart';
-import '../../core/models/content.dart';
-import '../../core/router/app_routes.dart';
-import '../../core/widgets/data/data_widget.dart';
-import '../../core/widgets/data/header_widget.dart';
-import '../home/bloc/home/home_bloc.dart';
-import '../home/bloc/tab/tab_bloc.dart';
+import '../../../core/constants/constants.dart';
+import '../../../core/models/content.dart';
+import '../../../core/router/app_routes.dart';
+import '../../../core/widgets/data/data_widget.dart';
+import '../../../core/widgets/data/header_widget.dart';
+import '../../home/bloc/home/home_bloc.dart';
+import '../../home/bloc/tab/tab_bloc.dart';
 
 class ContentsList extends StatelessWidget {
   const ContentsList({

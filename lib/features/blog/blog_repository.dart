@@ -5,14 +5,14 @@ import '../../core/network/dio_options.dart';
 import '../../core/models/blog.dart';
 
 class BlogRepository {
-  Future<int?> addBlog(Blog blog) async {
+  Future<int?> addBlog(BlogModel blog) async {
     try {
       final response = await dio.post(
         Const.blogURL,
         data: {
-          'title': blog.title,
-          'index': blog.index,
-          'cid': blog.cid,
+          'title': blog.title.trim(),
+          'index': int.parse(blog.index),
+          'cid': int.parse(blog.cid),
         },
         options: options,
       );
@@ -24,15 +24,15 @@ class BlogRepository {
     }
   }
 
-  Future<int?> updateBlog(Blog blog) async {
+  Future<int?> updateBlog(BlogModel blog) async {
     try {
       final response = await dio.put(
         Const.blogURL,
         data: {
           'id': blog.id,
-          'title': blog.title,
-          'index': blog.index,
-          'cid': blog.cid,
+          'title': blog.title.trim(),
+          'index': int.parse(blog.index),
+          'cid': int.parse(blog.cid),
         },
         options: options,
       );
@@ -44,10 +44,10 @@ class BlogRepository {
     }
   }
 
-  Future<int?> deleteBlog(Blog blog) async {
+  Future<int?> deleteBlog(int id) async {
     try {
       final response = await dio.delete(
-        '${Const.blogURL}${blog.id}',
+        '${Const.blogURL}$id',
         options: options,
       );
       return response.statusCode;

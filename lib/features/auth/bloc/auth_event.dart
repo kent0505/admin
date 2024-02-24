@@ -25,5 +25,3 @@ class AuthRegisterEvent extends AuthEvent {
     this.password2,
   );
 }
-
-class LogoutEvent extends AuthEvent {}

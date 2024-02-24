@@ -7,6 +7,7 @@ import '../../../core/models/content.dart';
 import '../../../core/utils.dart';
 import '../../../core/widgets/buttons/image_pick_button.dart';
 import '../../../core/widgets/buttons/save_button.dart';
+import '../../../core/widgets/dropdown/dropdown_bid.dart';
 import '../../../core/widgets/image/image_file_widget.dart';
 import '../../../core/widgets/textfields/textfield_widget.dart';
 import '../../home/bloc/home/home_bloc.dart';
@@ -39,10 +40,7 @@ class _ContentAddImageState extends State<ContentAddImage> {
           controller: controller1,
           hintText: 'Index',
         ),
-        TextFieldWidget(
-          controller: controller2,
-          hintText: 'BID',
-        ),
+        DropdownBID(controller: controller2),
         const SizedBox(height: 20),
         BlocBuilder<ImageBloc, ImageState>(
           builder: (context, state) {
@@ -68,10 +66,10 @@ class _ContentAddImageState extends State<ContentAddImage> {
         BlocListener<ImageBloc, ImageState>(
           listener: (context, state) {
             if (state is ImageSuccessState) {
+              context.pop();
               context
                   .read<HomeBloc>()
                   .add(LoadHomeEvent(Const.toastImageAdded, state.status));
-              context.pop();
             }
             if (state is ImageErrorState) {
               Utils.showToast(context, state.message, state.status, true);
@@ -82,7 +80,7 @@ class _ContentAddImageState extends State<ContentAddImage> {
               return SaveButton(
                 title: Const.buttonAddText,
                 loading: state is ImageLoadingState,
-                onTap: () async {
+                onTap: () {
                   context.read<ImageBloc>().add(UploadImageEvent(
                         Content(
                           id: 0,

@@ -1,3 +1,5 @@
+import 'domain_name.dart';
+
 abstract final class Const {
   static String appTitle = domainName.toUpperCase();
   static String username = '';
@@ -55,7 +57,6 @@ abstract final class Const {
 
   // backend
   static String token = '';
-  static String domainName = ''; // example.com
   static String url = 'https://$domainName';
   static String loginURL = '$url/api/v1/user/login';
   static String registerURL = '$url/api/v1/user/register';

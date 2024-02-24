@@ -91,10 +91,5 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthRegisterState());
       }
     });
-
-    on<LogoutEvent>((event, emit) async {
-      await Utils.saveData('token', '');
-      emit(AuthLoginState());
-    });
   }
 }

@@ -43,7 +43,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     });
 
     on<DeleteCategoryEvent>((event, emit) async {
-      int? status = await _repository.deleteCategory(event.category);
+      int? status = await _repository.deleteCategory(event.id);
 
       if (status == 200) {
         emit(CategorySuccessState(Const.toastCategoryDeleted, status!));

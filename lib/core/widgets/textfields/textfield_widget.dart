@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TextFieldWidget extends StatelessWidget {
   const TextFieldWidget({
@@ -21,6 +22,11 @@ class TextFieldWidget extends StatelessWidget {
         const SizedBox(height: 5),
         TextField(
           controller: controller,
+          inputFormatters: [
+            if (isTitle == false) ...[
+              FilteringTextInputFormatter.allow(RegExp(r'[1234567890]')),
+            ]
+          ],
           keyboardType: isTitle ? null : TextInputType.number,
           textCapitalization: TextCapitalization.sentences,
           maxLines: isTitle ? null : 1,

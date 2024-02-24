@@ -7,9 +7,9 @@ import '../../core/router/app_routes.dart';
 import '../../core/utils.dart';
 import '../../core/widgets/action/error_text.dart';
 import '../../core/widgets/action/loading_widget.dart';
-import '../blog/blogs_list.dart';
-import '../category/category_list.dart';
-import '../content/contents_list.dart';
+import '../blog/widgets/blogs_list.dart';
+import '../category/widgets/category_list.dart';
+import '../content/widgets/contents_list.dart';
 import '../drawer/drawer_widget.dart';
 import 'bloc/home/home_bloc.dart';
 import 'bloc/tab/tab_bloc.dart';
@@ -22,10 +22,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  void loadHome() {
+    context.read<HomeBloc>().add(LoadHomeEvent(Const.toastLoaded, 200));
+  }
+
   @override
   void initState() {
     super.initState();
-    context.read<HomeBloc>().add(LoadHomeEvent(Const.toastLoaded, 200));
+    loadHome();
   }
 
   @override
@@ -65,9 +69,11 @@ class _HomePageState extends State<HomePage> {
                       if (state is TabCategoryState) {
                         context.push(AppRoutes.categoryAddPage);
                       }
+
                       if (state is TabBlogState) {
                         context.push(AppRoutes.blogAddPage);
                       }
+
                       if (state is TabContentState) {
                         context.push(AppRoutes.contentAddPage);
                       }
@@ -109,11 +115,7 @@ class _HomePageState extends State<HomePage> {
               if (state is HomeErrorState) {
                 return ErrorText(
                   errorText: Const.toastError,
-                  onPressed: () {
-                    context
-                        .read<HomeBloc>()
-                        .add(LoadHomeEvent(Const.toastLoaded, 200));
-                  },
+                  onPressed: loadHome,
                 );
               }
 

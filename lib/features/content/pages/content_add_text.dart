@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/models/content.dart';
 import '../../../core/utils.dart';
+import '../../../core/widgets/dropdown/dropdown_bid.dart';
 import '../../../core/widgets/textfields/textfield_widget.dart';
 import '../../../core/widgets/buttons/save_button.dart';
 import '../../home/bloc/home/home_bloc.dart';
@@ -44,10 +45,7 @@ class _ContentAddTextState extends State<ContentAddText> {
           controller: controller2,
           hintText: 'Index',
         ),
-        TextFieldWidget(
-          controller: controller3,
-          hintText: 'BID',
-        ),
+        DropdownBID(controller: controller3),
         const SizedBox(height: 20),
         BlocListener<ContentBloc, ContentState>(
           listener: (context, state) {

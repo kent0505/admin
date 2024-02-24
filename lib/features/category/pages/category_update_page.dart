@@ -7,6 +7,7 @@ import '../../../core/models/category.dart';
 import '../../../core/utils.dart';
 import '../../../core/widgets/buttons/delete_button.dart';
 import '../../../core/widgets/buttons/save_button.dart';
+import '../../../core/widgets/dropdown/dropdown_type.dart';
 import '../../../core/widgets/textfields/textfield_widget.dart';
 import '../../home/bloc/home/home_bloc.dart';
 import '../bloc/category_bloc.dart';
@@ -24,23 +25,23 @@ class CategoryUpdatePage extends StatefulWidget {
 }
 
 class _CategoryUpdatePageState extends State<CategoryUpdatePage> {
-  final _controller1 = TextEditingController();
-  final _controller2 = TextEditingController();
-  final _controller3 = TextEditingController();
+  final controller1 = TextEditingController();
+  final controller2 = TextEditingController();
+  final controller3 = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _controller1.text = widget.category.title;
-    _controller2.text = widget.category.index.toString();
-    _controller3.text = widget.category.type.toString();
+    controller1.text = widget.category.title;
+    controller2.text = widget.category.index.toString();
+    controller3.text = widget.category.type.toString();
   }
 
   @override
   void dispose() {
-    _controller1.dispose();
-    _controller2.dispose();
-    _controller3.dispose();
+    controller1.dispose();
+    controller2.dispose();
+    controller3.dispose();
     super.dispose();
   }
 
@@ -55,7 +56,7 @@ class _CategoryUpdatePageState extends State<CategoryUpdatePage> {
             onPressed: () {
               context
                   .read<CategoryBloc>()
-                  .add(DeleteCategoryEvent(widget.category));
+                  .add(DeleteCategoryEvent(widget.category.id));
             },
           ),
         ],
@@ -64,18 +65,15 @@ class _CategoryUpdatePageState extends State<CategoryUpdatePage> {
         padding: const EdgeInsets.all(20),
         children: [
           TextFieldWidget(
-            controller: _controller1,
+            controller: controller1,
             hintText: 'Title',
             isTitle: true,
           ),
           TextFieldWidget(
-            controller: _controller2,
+            controller: controller2,
             hintText: 'Index',
           ),
-          TextFieldWidget(
-            controller: _controller3,
-            hintText: 'Type',
-          ),
+          DropdownType(controller: controller3),
           const SizedBox(height: 20),
           BlocListener<CategoryBloc, CategoryState>(
             listener: (context, state) {
@@ -85,7 +83,6 @@ class _CategoryUpdatePageState extends State<CategoryUpdatePage> {
                     .read<HomeBloc>()
                     .add(LoadHomeEvent(state.message, state.status));
               }
-
               if (state is CategoryErrorState) {
                 Utils.showToast(context, state.message, state.status, true);
               }
@@ -95,13 +92,13 @@ class _CategoryUpdatePageState extends State<CategoryUpdatePage> {
                 return SaveButton(
                   title: Const.buttonUpdateText,
                   loading: state is CategoryLoadingState,
-                  onTap: () async {
+                  onTap: () {
                     context.read<CategoryBloc>().add(UpdateCategoryEvent(
-                          Category(
+                          CategoryModel(
                             id: widget.category.id,
-                            title: _controller1.text,
-                            index: int.tryParse(_controller2.text) ?? 0,
-                            type: int.tryParse(_controller3.text) ?? 0,
+                            title: controller1.text,
+                            index: controller2.text,
+                            type: controller3.text,
                           ),
                         ));
                   },
