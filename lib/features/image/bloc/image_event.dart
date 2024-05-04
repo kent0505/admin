@@ -8,15 +8,15 @@ class PickImageEvent extends ImageEvent {}
 
 class UploadImageEvent extends ImageEvent {
   final Content content;
-  UploadImageEvent(this.content);
+  UploadImageEvent({required this.content});
 }
 
 class UpdateImageEvent extends ImageEvent {
   final Content content;
-  UpdateImageEvent(this.content);
+  UpdateImageEvent({required this.content});
 }
 
 class DeleteImageEvent extends ImageEvent {
   final Content content;
-  DeleteImageEvent(this.content);
+  DeleteImageEvent({required this.content});
 }

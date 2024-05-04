@@ -55,7 +55,9 @@ class _ImagePageState extends State<ImagePage> {
             DeleteButton(
               title: Const.alertDeleteContent,
               onPressed: () {
-                context.read<ImageBloc>().add(DeleteImageEvent(widget.content));
+                context
+                    .read<ImageBloc>()
+                    .add(DeleteImageEvent(content: widget.content));
               },
             ),
           ],
@@ -100,7 +102,7 @@ class _ImagePageState extends State<ImagePage> {
                 }
 
                 if (state is ImageErrorState) {
-                  showToast(context, 'Error', true);
+                  showToast(context, 'ImageErrorState', true);
                 }
               },
               child: BlocBuilder<ImageBloc, ImageState>(
@@ -110,7 +112,7 @@ class _ImagePageState extends State<ImagePage> {
                     loading: state is ImageLoadingState,
                     onTap: () {
                       context.read<ImageBloc>().add(UpdateImageEvent(
-                            Content(
+                            content: Content(
                               id: widget.content.id,
                               title: widget.content.title,
                               index: int.tryParse(controller.text) ?? 0,

@@ -46,9 +46,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       );
 
       if (result is AuthLoginSuccessResult) {
-        token = result.token;
         await saveData('token', result.token);
-        username = event.username.toUpperCase();
+        await saveData('username', event.username);
         await getData();
         emit(AuthLoginSuccessState());
       } else if (result is ErrorResult) {

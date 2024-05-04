@@ -10,10 +10,7 @@ import '../bloc/home/home_bloc.dart';
 import '../bloc/tab/tab_bloc.dart';
 
 class CategoryList extends StatelessWidget {
-  const CategoryList({
-    super.key,
-    required this.categories,
-  });
+  const CategoryList({super.key, required this.categories});
 
   final List<Category> categories;
 

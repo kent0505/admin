@@ -22,6 +22,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       log('LOAD HOME EVENT');
       emit(HomeLoadingState());
 
+      // await Future.delayed(const Duration(seconds: 2), () {});
+
       HomeResult result1 = await _repository.fetchCategories();
       HomeResult result2 = await _repository.fetchBlogs();
       HomeResult result3 = await _repository.fetchContents();

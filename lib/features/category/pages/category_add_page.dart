@@ -68,7 +68,7 @@ class _CategoryAddPageState extends State<CategoryAddPage> {
                   loading: state is CategoryLoadingState,
                   onTap: () {
                     context.read<CategoryBloc>().add(AddCategoryEvent(
-                          CategoryModel(
+                          category: CategoryModel(
                             title: controller1.text,
                             index: controller2.text,
                             type: controller3.text,

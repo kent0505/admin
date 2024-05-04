@@ -25,6 +25,12 @@ class _UserPageState extends State<UserPage> {
   final controller5 = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    controller1.text = username;
+  }
+
+  @override
   void dispose() {
     controller1.dispose();
     controller2.dispose();
@@ -47,6 +53,7 @@ class _UserPageState extends State<UserPage> {
           listener: (context, state) {
             if (state is UserSuccessState) {
               showToast(context, 'UserSuccessState');
+              logout();
               context.go(AppRoutes.authPage);
             }
 

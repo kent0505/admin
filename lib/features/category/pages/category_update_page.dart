@@ -56,7 +56,7 @@ class _CategoryUpdatePageState extends State<CategoryUpdatePage> {
             onPressed: () {
               context
                   .read<CategoryBloc>()
-                  .add(DeleteCategoryEvent(widget.category.id));
+                  .add(DeleteCategoryEvent(id: widget.category.id));
             },
           ),
         ],
@@ -92,7 +92,7 @@ class _CategoryUpdatePageState extends State<CategoryUpdatePage> {
                   loading: state is CategoryLoadingState,
                   onTap: () {
                     context.read<CategoryBloc>().add(UpdateCategoryEvent(
-                          CategoryModel(
+                          category: CategoryModel(
                             id: widget.category.id,
                             title: controller1.text,
                             index: controller2.text,

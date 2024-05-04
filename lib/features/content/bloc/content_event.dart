@@ -4,15 +4,15 @@ abstract class ContentEvent {}
 
 class AddContentEvent extends ContentEvent {
   final Content content;
-  AddContentEvent(this.content);
+  AddContentEvent({required this.content});
 }
 
 class UpdateContentEvent extends ContentEvent {
   final Content content;
-  UpdateContentEvent(this.content);
+  UpdateContentEvent({required this.content});
 }
 
 class DeleteContentEvent extends ContentEvent {
   final Content content;
-  DeleteContentEvent(this.content);
+  DeleteContentEvent({required this.content});
 }

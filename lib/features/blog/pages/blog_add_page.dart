@@ -58,7 +58,7 @@ class _BlogAddPageState extends State<BlogAddPage> {
                 context.read<HomeBloc>().add(LoadHomeEvent());
               }
               if (state is BlogErrorState) {
-                showToast(context, 'Error', true);
+                showToast(context, 'BlogErrorState', true);
               }
             },
             child: BlocBuilder<BlogBloc, BlogState>(
@@ -69,7 +69,7 @@ class _BlogAddPageState extends State<BlogAddPage> {
                   onTap: () {
                     context.read<BlogBloc>().add(
                           AddBlogEvent(
-                            BlogModel(
+                            blog: BlogModel(
                               title: controller1.text,
                               index: controller2.text,
                               cid: controller3.text,

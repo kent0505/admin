@@ -39,11 +39,11 @@ class ImageBloc extends Bloc<ImageEvent, ImageState> {
         if (croppedFile != null) {
           image = File(croppedFile.path);
           fileName = file.name;
-          emit(ImagePickedState(image!));
+          emit(ImagePickedState(file: image!));
         } else {
           image = File(file.path);
           fileName = file.name;
-          emit(ImagePickedState(image!));
+          emit(ImagePickedState(file: image!));
         }
       } else {
         emit(ImageInitial());
@@ -52,7 +52,7 @@ class ImageBloc extends Bloc<ImageEvent, ImageState> {
 
     on<UploadImageEvent>((event, emit) async {
       if (state is ImagePickedState) {
-        emit(ImageLoadingState(image!));
+        emit(ImageLoadingState(file: image!));
 
         int? status = await _repository.uploadImage(
           image!,

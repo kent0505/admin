@@ -4,15 +4,15 @@ abstract class CategoryEvent {}
 
 class AddCategoryEvent extends CategoryEvent {
   final CategoryModel category;
-  AddCategoryEvent(this.category);
+  AddCategoryEvent({required this.category});
 }
 
 class UpdateCategoryEvent extends CategoryEvent {
   final CategoryModel category;
-  UpdateCategoryEvent(this.category);
+  UpdateCategoryEvent({required this.category});
 }
 
 class DeleteCategoryEvent extends CategoryEvent {
   final int id;
-  DeleteCategoryEvent(this.id);
+  DeleteCategoryEvent({required this.id});
 }

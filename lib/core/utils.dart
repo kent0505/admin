@@ -14,7 +14,7 @@ String username = '';
 Future<void> getData() async {
   final prefs = await SharedPreferences.getInstance();
   token = prefs.getString('token') ?? '';
-
+  username = prefs.getString('username') ?? '';
   log(token);
   log(username);
 }
@@ -25,8 +25,10 @@ Future<void> saveData(String key, String value) async {
 }
 
 Future<void> logout() async {
-  await saveData('token', '');
+  token = '';
   username = '';
+  await saveData('token', token);
+  await saveData('username', username);
 }
 
 Future<bool> tokenValid() async {

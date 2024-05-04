@@ -53,11 +53,11 @@ class _AuthPageState extends State<AuthPage> {
                 }
 
                 if (state is AuthErrorState) {
-                  showToast(context, 'Error', true);
+                  showToast(context, 'AuthErrorState', true);
                 }
 
                 if (state is AuthNullState) {
-                  showToast(context, 'Null', true);
+                  showToast(context, 'AuthNullState', true);
                 }
               },
               child: BlocBuilder<AuthBloc, AuthState>(

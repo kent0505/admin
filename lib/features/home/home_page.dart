@@ -94,11 +94,11 @@ class _HomePageState extends State<HomePage> {
         body: BlocListener<HomeBloc, HomeState>(
           listener: (context, state) {
             if (state is HomeLoadedState) {
-              showToast(context, 'Loaded');
+              showToast(context, 'HomeLoadedState');
             }
 
             if (state is HomeErrorState) {
-              showToast(context, 'Error', true);
+              showToast(context, 'HomeErrorState', true);
             }
           },
           child: BlocBuilder<HomeBloc, HomeState>(

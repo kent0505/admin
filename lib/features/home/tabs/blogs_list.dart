@@ -10,10 +10,7 @@ import '../bloc/home/home_bloc.dart';
 import '../bloc/tab/tab_bloc.dart';
 
 class BlogsList extends StatelessWidget {
-  const BlogsList({
-    super.key,
-    required this.blogs,
-  });
+  const BlogsList({super.key, required this.blogs});
 
   final List<Blog> blogs;
 

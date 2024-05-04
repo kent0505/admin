@@ -52,7 +52,7 @@ class _ContentUpdatePageState extends State<ContentUpdatePage> {
             onPressed: () {
               context
                   .read<ContentBloc>()
-                  .add(DeleteContentEvent(widget.content));
+                  .add(DeleteContentEvent(content: widget.content));
             },
           ),
         ],
@@ -87,7 +87,7 @@ class _ContentUpdatePageState extends State<ContentUpdatePage> {
                   loading: state is ContentLoadingState,
                   onTap: () {
                     context.read<ContentBloc>().add(UpdateContentEvent(
-                          Content(
+                          content: Content(
                             id: widget.content.id,
                             title: controller1.text,
                             index: int.tryParse(controller2.text) ?? 0,

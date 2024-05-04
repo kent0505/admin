@@ -65,7 +65,7 @@ class _ContentAddTextState extends State<ContentAddText> {
                 loading: state is ContentLoadingState,
                 onTap: () {
                   context.read<ContentBloc>().add(AddContentEvent(
-                        Content(
+                        content: Content(
                           id: 0,
                           title: controller1.text,
                           index: int.tryParse(controller2.text) ?? 0,

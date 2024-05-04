@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 
+import '../../core/utils.dart';
 import '../../core/constants/constants.dart';
 import '../../core/models/category.dart';
 import '../../core/models/blog.dart';
 import '../../core/models/content.dart';
-import '../../core/utils.dart';
 
 class HomeRepository {
   late Dio dio;

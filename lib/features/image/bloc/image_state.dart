@@ -6,12 +6,12 @@ class ImageInitial extends ImageState {}
 
 class ImageLoadingState extends ImageState {
   final File file;
-  ImageLoadingState(this.file);
+  ImageLoadingState({required this.file});
 }
 
 class ImagePickedState extends ImageState {
   final File file;
-  ImagePickedState(this.file);
+  ImagePickedState({required this.file});
 }
 
 class ImageSuccessState extends ImageState {}

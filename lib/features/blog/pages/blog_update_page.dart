@@ -54,7 +54,7 @@ class _BlogUpdatePageState extends State<BlogUpdatePage> {
           DeleteButton(
             title: Const.alertDeleteBlog,
             onPressed: () {
-              context.read<BlogBloc>().add(DeleteBlogEvent(widget.blog.id));
+              context.read<BlogBloc>().add(DeleteBlogEvent(id: widget.blog.id));
             },
           ),
         ],
@@ -89,16 +89,14 @@ class _BlogUpdatePageState extends State<BlogUpdatePage> {
                   title: Const.buttonUpdateText,
                   loading: state is BlogLoadingState,
                   onTap: () {
-                    context.read<BlogBloc>().add(
-                          UpdateBlogEvent(
-                            BlogModel(
-                              id: widget.blog.id,
-                              title: controller1.text,
-                              index: controller2.text,
-                              cid: controller3.text,
-                            ),
+                    context.read<BlogBloc>().add(UpdateBlogEvent(
+                          blog: BlogModel(
+                            id: widget.blog.id,
+                            title: controller1.text,
+                            index: controller2.text,
+                            cid: controller3.text,
                           ),
-                        );
+                        ));
                   },
                 );
               },

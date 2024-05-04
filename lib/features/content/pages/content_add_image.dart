@@ -80,7 +80,7 @@ class _ContentAddImageState extends State<ContentAddImage> {
                 loading: state is ImageLoadingState,
                 onTap: () {
                   context.read<ImageBloc>().add(UploadImageEvent(
-                        Content(
+                        content: Content(
                           id: 0,
                           title: '',
                           index: int.tryParse(controller1.text) ?? 0,
