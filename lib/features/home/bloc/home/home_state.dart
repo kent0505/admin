@@ -10,22 +10,11 @@ class HomeLoadedState extends HomeState {
   final List<Category> categories;
   final List<Blog> blogs;
   final List<Content> contents;
-  final String message;
-  final int status;
-  HomeLoadedState(
-    this.categories,
-    this.blogs,
-    this.contents,
-    this.message,
-    this.status,
-  );
+  HomeLoadedState({
+    required this.categories,
+    required this.blogs,
+    required this.contents,
+  });
 }
 
-class HomeErrorState extends HomeState {
-  final String message;
-  final int status;
-  HomeErrorState(
-    this.message,
-    this.status,
-  );
-}
+class HomeErrorState extends HomeState {}

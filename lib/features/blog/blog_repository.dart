@@ -1,10 +1,26 @@
 import 'package:dio/dio.dart';
 
 import '../../core/constants/constants.dart';
-import '../../core/network/dio_options.dart';
 import '../../core/models/blog.dart';
+import '../../core/utils.dart';
 
 class BlogRepository {
+  late Dio dio;
+
+  BlogRepository() {
+    final options = BaseOptions(
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+      receiveDataWhenStatusError: true,
+      connectTimeout: const Duration(seconds: 5),
+      receiveTimeout: const Duration(seconds: 5),
+    );
+
+    dio = Dio(options);
+  }
+
   Future<int?> addBlog(BlogModel blog) async {
     try {
       final response = await dio.post(
@@ -14,7 +30,6 @@ class BlogRepository {
           'index': int.parse(blog.index),
           'cid': int.parse(blog.cid),
         },
-        options: options,
       );
       return response.statusCode!;
     } on DioException catch (e) {
@@ -34,7 +49,6 @@ class BlogRepository {
           'index': int.parse(blog.index),
           'cid': int.parse(blog.cid),
         },
-        options: options,
       );
       return response.statusCode;
     } on DioException catch (e) {
@@ -46,10 +60,8 @@ class BlogRepository {
 
   Future<int?> deleteBlog(int id) async {
     try {
-      final response = await dio.delete(
-        '${Const.blogURL}$id',
-        options: options,
-      );
+      final response = await dio.delete('${Const.blogURL}$id');
+
       return response.statusCode;
     } on DioException catch (e) {
       return e.response!.statusCode;

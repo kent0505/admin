@@ -9,19 +9,19 @@ class ChangePageEvent extends AuthEvent {}
 class AuthLoginEvent extends AuthEvent {
   final String username;
   final String password;
-  AuthLoginEvent(
-    this.username,
-    this.password,
-  );
+  AuthLoginEvent({
+    required this.username,
+    required this.password,
+  });
 }
 
 class AuthRegisterEvent extends AuthEvent {
   final String username;
   final String password;
   final String password2;
-  AuthRegisterEvent(
-    this.username,
-    this.password,
-    this.password2,
-  );
+  AuthRegisterEvent({
+    required this.username,
+    required this.password,
+    required this.password2,
+  });
 }

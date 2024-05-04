@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -13,7 +14,9 @@ String username = '';
 Future<void> getData() async {
   final prefs = await SharedPreferences.getInstance();
   token = prefs.getString('token') ?? '';
-  username = prefs.getString('username') ?? 'Null';
+
+  log(token);
+  log(username);
 }
 
 Future<void> saveData(String key, String value) async {
@@ -21,12 +24,18 @@ Future<void> saveData(String key, String value) async {
   prefs.setString(key, value);
 }
 
+Future<void> logout() async {
+  await saveData('token', '');
+  username = '';
+}
+
 Future<bool> tokenValid() async {
   await getData();
   List<String> parts = token.split('.');
   if (token.isNotEmpty && parts.length == 3) {
     String payload = parts[1];
-    String decodedPayload = utf8.decode(base64Url.decode(payload));
+    String normalized = base64Url.normalize(payload);
+    String decodedPayload = utf8.decode(base64Url.decode(normalized));
     Map<String, dynamic> payloadJson = json.decode(decodedPayload);
     final now = DateTime.now().millisecondsSinceEpoch / 1000;
 
@@ -111,8 +120,7 @@ void showAlertDialog(
 
 void showToast(
   BuildContext context,
-  String message,
-  int? status, [
+  String message, [
   bool error = false,
 ]) {
   if (error) {
@@ -134,7 +142,7 @@ void showToast(
         ),
         child: Center(
           child: Text(
-            status == null ? message : '$message\n($status)',
+            message,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontWeight: FontWeight.w500,

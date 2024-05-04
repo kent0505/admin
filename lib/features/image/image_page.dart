@@ -96,13 +96,11 @@ class _ImagePageState extends State<ImagePage> {
               listener: (context, state) {
                 if (state is ImageSuccessState) {
                   context.pop();
-                  context
-                      .read<HomeBloc>()
-                      .add(LoadHomeEvent(state.message, state.status));
+                  context.read<HomeBloc>().add(LoadHomeEvent());
                 }
 
                 if (state is ImageErrorState) {
-                  showToast(context, state.message, state.status, true);
+                  showToast(context, 'Error', true);
                 }
               },
               child: BlocBuilder<ImageBloc, ImageState>(

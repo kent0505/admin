@@ -55,12 +55,10 @@ class _BlogAddPageState extends State<BlogAddPage> {
             listener: (context, state) {
               if (state is BlogSuccessState) {
                 context.pop();
-                context
-                    .read<HomeBloc>()
-                    .add(LoadHomeEvent(state.message, state.status));
+                context.read<HomeBloc>().add(LoadHomeEvent());
               }
               if (state is BlogErrorState) {
-                showToast(context, state.message, state.status, true);
+                showToast(context, 'Error', true);
               }
             },
             child: BlocBuilder<BlogBloc, BlogState>(

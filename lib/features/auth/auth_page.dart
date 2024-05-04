@@ -1,9 +1,9 @@
+import 'package:blog/core/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/router.dart';
-import '../../core/utils.dart';
 import '../../core/constants/constants.dart';
 import '../../core/widgets/action/app_title.dart';
 import '../../core/widgets/action/logo_widget.dart';
@@ -51,14 +51,13 @@ class _AuthPageState extends State<AuthPage> {
                 if (state is AuthLoginSuccessState) {
                   context.go(AppRoutes.homePage);
                 }
-                if (state is AuthRegisterSuccessState) {
-                  showToast(context, state.message, state.status);
-                }
+
                 if (state is AuthErrorState) {
-                  showToast(context, state.message, state.status, true);
+                  showToast(context, 'Error', true);
                 }
+
                 if (state is AuthNullState) {
-                  showToast(context, state.message, state.status, true);
+                  showToast(context, 'Null', true);
                 }
               },
               child: BlocBuilder<AuthBloc, AuthState>(
@@ -98,8 +97,8 @@ class _AuthPageState extends State<AuthPage> {
                           loading: state is AuthLoginLoadingState,
                           onTap: () {
                             context.read<AuthBloc>().add(AuthLoginEvent(
-                                  usernameCon.text,
-                                  passwordCon.text,
+                                  username: usernameCon.text,
+                                  password: passwordCon.text,
                                 ));
                             usernameCon.clear();
                             passwordCon.clear();
@@ -154,9 +153,9 @@ class _AuthPageState extends State<AuthPage> {
                           loading: state is AuthRegisterLoadingState,
                           onTap: () {
                             context.read<AuthBloc>().add(AuthRegisterEvent(
-                                  usernameCon.text,
-                                  passwordCon.text,
-                                  passwordCon2.text,
+                                  username: usernameCon.text,
+                                  password: passwordCon.text,
+                                  password2: passwordCon2.text,
                                 ));
                             usernameCon.clear();
                             passwordCon.clear();

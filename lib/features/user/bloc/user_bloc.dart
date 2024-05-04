@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/constants/constants.dart';
 import '../user_repository.dart';
 
 part 'user_event.dart';
@@ -24,25 +23,25 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           event.newUsername.isEmpty ||
           event.newPassword.isEmpty ||
           event.newPassword2.isEmpty) {
-        emit(UserErrorState(Const.toastNull, null));
+        emit(UserErrorState());
         emit(UserInitial());
         return;
       }
 
       if (event.newPassword != event.newPassword2) {
-        emit(UserErrorState(Const.toastPasswordError, null));
+        emit(UserErrorState());
         emit(UserInitial());
         return;
       }
 
       if (event.username == event.newUsername &&
           event.password == event.newPassword) {
-        emit(UserErrorState(Const.toastUserDataError, null));
+        emit(UserErrorState());
         emit(UserInitial());
         return;
       }
 
-      int? status = await _repository.updateUser(
+      int status = await _repository.updateUser(
         event.username,
         event.password,
         event.newUsername,
@@ -50,10 +49,10 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       );
 
       if (status == 200) {
-        emit(UserSuccessState(Const.toastUserUpdated, status!));
+        emit(UserSuccessState());
         emit(UserInitial());
       } else {
-        emit(UserErrorState(Const.toastError, status));
+        emit(UserErrorState());
         emit(UserInitial());
       }
     });

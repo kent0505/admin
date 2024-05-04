@@ -14,20 +14,6 @@ class ImagePickedState extends ImageState {
   ImagePickedState(this.file);
 }
 
-class ImageSuccessState extends ImageState {
-  final String message;
-  final int status;
-  ImageSuccessState(
-    this.message,
-    this.status,
-  );
-}
+class ImageSuccessState extends ImageState {}
 
-class ImageErrorState extends ImageState {
-  final String message;
-  final int? status;
-  ImageErrorState(
-    this.message,
-    this.status,
-  );
-}
+class ImageErrorState extends ImageState {}

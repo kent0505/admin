@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/constants/constants.dart';
 import '../../../core/models/category.dart';
 import '../../../core/router.dart';
 import '../../../core/widgets/data/data_widget.dart';
 import '../../../core/widgets/data/header_widget.dart';
-import '../../home/bloc/home/home_bloc.dart';
-import '../../home/bloc/tab/tab_bloc.dart';
+import '../bloc/home/home_bloc.dart';
+import '../bloc/tab/tab_bloc.dart';
 
 class CategoryList extends StatelessWidget {
   const CategoryList({
@@ -20,11 +19,11 @@ class CategoryList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<TabBloc>().add(ChangeTabEvent(0));
+    context.read<TabBloc>().add(ChangeTabEvent(index: 0));
 
     return RefreshIndicator(
       onRefresh: () async {
-        context.read<HomeBloc>().add(LoadHomeEvent(Const.toastLoaded, 200));
+        context.read<HomeBloc>().add(LoadHomeEvent());
       },
       child: ListView(
         padding: const EdgeInsets.symmetric(vertical: 10),

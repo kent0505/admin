@@ -7,9 +7,9 @@ import '../../core/router.dart';
 import '../../core/utils.dart';
 import '../../core/widgets/action/error_text.dart';
 import '../../core/widgets/action/loading_widget.dart';
-import '../blog/widgets/blogs_list.dart';
-import '../category/widgets/category_list.dart';
-import '../content/widgets/contents_list.dart';
+import 'tabs/blogs_list.dart';
+import 'tabs/category_list.dart';
+import 'tabs/contents_list.dart';
 import 'widgets/drawer_widget.dart';
 import 'bloc/home/home_bloc.dart';
 import 'bloc/tab/tab_bloc.dart';
@@ -23,7 +23,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   void loadHome() {
-    context.read<HomeBloc>().add(LoadHomeEvent(Const.toastLoaded, 200));
+    context.read<HomeBloc>().add(LoadHomeEvent());
   }
 
   @override
@@ -94,16 +94,11 @@ class _HomePageState extends State<HomePage> {
         body: BlocListener<HomeBloc, HomeState>(
           listener: (context, state) {
             if (state is HomeLoadedState) {
-              if (state.message == Const.toastLoaded) {
-                showToast(context, state.message, state.status);
-              } else {
-                showToast(context, state.message, state.status);
-                showToast(context, Const.toastLoaded, state.status);
-              }
+              showToast(context, 'Loaded');
             }
 
             if (state is HomeErrorState) {
-              showToast(context, state.message, state.status, true);
+              showToast(context, 'Error', true);
             }
           },
           child: BlocBuilder<HomeBloc, HomeState>(
@@ -114,7 +109,7 @@ class _HomePageState extends State<HomePage> {
 
               if (state is HomeErrorState) {
                 return ErrorText(
-                  errorText: Const.toastError,
+                  errorText: 'Error',
                   onPressed: loadHome,
                 );
               }

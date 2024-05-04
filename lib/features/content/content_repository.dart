@@ -1,10 +1,26 @@
 import 'package:dio/dio.dart';
 
 import '../../core/constants/constants.dart';
-import '../../core/network/dio_options.dart';
 import '../../core/models/content.dart';
+import '../../core/utils.dart';
 
 class ContentRepository {
+  late Dio dio;
+
+  ContentRepository() {
+    final options = BaseOptions(
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+      receiveDataWhenStatusError: true,
+      connectTimeout: const Duration(seconds: 5),
+      receiveTimeout: const Duration(seconds: 5),
+    );
+
+    dio = Dio(options);
+  }
+
   Future<int?> addContent(Content content) async {
     try {
       final response = await dio.post(
@@ -14,7 +30,6 @@ class ContentRepository {
           'index': content.index,
           'bid': content.bid,
         },
-        options: options,
       );
       return response.statusCode!;
     } on DioException catch (e) {
@@ -33,7 +48,6 @@ class ContentRepository {
           'title': content.title,
           'index': content.index,
         },
-        options: options,
       );
       return response.statusCode!;
     } on DioException catch (e) {
@@ -45,10 +59,7 @@ class ContentRepository {
 
   Future<int?> deleteContent(Content content) async {
     try {
-      final response = await dio.delete(
-        '${Const.contentURL}${content.id}',
-        options: options,
-      );
+      final response = await dio.delete('${Const.contentURL}${content.id}');
       return response.statusCode!;
     } on DioException catch (e) {
       return e.response!.statusCode;

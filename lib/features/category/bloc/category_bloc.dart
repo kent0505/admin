@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/constants/constants.dart';
 import '../../../core/models/category.dart';
 import '../category_repository.dart';
 
@@ -18,12 +17,12 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
         int? status = await _repository.addCategory(event.category);
 
         if (status == 200) {
-          emit(CategorySuccessState(Const.toastCategoryAdded, status!));
+          emit(CategorySuccessState());
         } else {
-          emit(CategoryErrorState(Const.toastError, status));
+          emit(CategoryErrorState());
         }
       } else {
-        emit(CategoryErrorState(Const.toastNull, null));
+        emit(CategoryErrorState());
         emit(CategoryInitial());
       }
     });
@@ -35,9 +34,9 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
         int? status = await _repository.updateCategory(event.category);
 
         if (status == 200) {
-          emit(CategorySuccessState(Const.toastCategoryUpdated, status!));
+          emit(CategorySuccessState());
         } else {
-          emit(CategoryErrorState(Const.toastError, status));
+          emit(CategoryErrorState());
         }
       }
     });
@@ -46,9 +45,9 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
       int? status = await _repository.deleteCategory(event.id);
 
       if (status == 200) {
-        emit(CategorySuccessState(Const.toastCategoryDeleted, status!));
+        emit(CategorySuccessState());
       } else {
-        emit(CategoryErrorState(Const.toastError, status));
+        emit(CategoryErrorState());
       }
     });
   }

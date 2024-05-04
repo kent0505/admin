@@ -51,13 +51,11 @@ class _ContentAddTextState extends State<ContentAddText> {
           listener: (context, state) {
             if (state is ContentSuccessState) {
               context.pop();
-              context
-                  .read<HomeBloc>()
-                  .add(LoadHomeEvent(state.message, state.status));
+              context.read<HomeBloc>().add(LoadHomeEvent());
             }
 
             if (state is ContentErrorState) {
-              showToast(context, state.message, state.status, true);
+              showToast(context, 'ContentErrorState', true);
             }
           },
           child: BlocBuilder<ContentBloc, ContentState>(

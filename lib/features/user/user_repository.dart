@@ -1,10 +1,26 @@
 import 'package:dio/dio.dart';
 
 import '../../core/constants/constants.dart';
-import '../../core/network/dio_options.dart';
+import '../../core/utils.dart';
 
 class UserRepository {
-  Future<int?> updateUser(
+  late Dio dio;
+
+  UserRepository() {
+    final options = BaseOptions(
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+      receiveDataWhenStatusError: true,
+      connectTimeout: const Duration(seconds: 5),
+      receiveTimeout: const Duration(seconds: 5),
+    );
+
+    dio = Dio(options);
+  }
+
+  Future<int> updateUser(
     String username,
     String password,
     String newUsername,
@@ -19,15 +35,10 @@ class UserRepository {
           'new_username': newUsername,
           'new_password': newPassword,
         },
-        options: options,
       );
       return response.statusCode!;
-    } on DioException catch (e) {
-      print(e);
-      return e.response!.statusCode;
     } catch (e) {
-      print(e);
-      return null;
+      return 0;
     }
   }
 }

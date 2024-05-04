@@ -46,12 +46,12 @@ class _UserPageState extends State<UserPage> {
         child: BlocListener<UserBloc, UserState>(
           listener: (context, state) {
             if (state is UserSuccessState) {
-              showToast(context, state.message, state.status);
+              showToast(context, 'UserSuccessState');
               context.go(AppRoutes.authPage);
             }
 
             if (state is UserErrorState) {
-              showToast(context, state.message, state.status, true);
+              showToast(context, 'UserErrorState', true);
             }
           },
           child: BlocBuilder<UserBloc, UserState>(

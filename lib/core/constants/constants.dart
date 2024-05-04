@@ -1,7 +1,10 @@
 import 'domain_name.dart';
 
 abstract final class Const {
-  static String appTitle = domainName.toUpperCase();
+  static String appTitle = domainName
+      .toUpperCase()
+      .replaceAll('HTTP://', '')
+      .replaceAll('HTTPS://', '');
 
   // button
   static String buttonAddText = 'POST';
@@ -30,32 +33,31 @@ abstract final class Const {
   static String tooltipLogout = 'Logout';
   static String tooltipRemoveImage = 'Remove image';
   // toast
-  static String toastLoaded = 'Loaded';
-  static String toastError = 'Error';
-  static String toastNull = 'Null';
-  static String toastLoginError = 'Username or password invalid';
-  static String toastUserAdded = 'User added';
-  static String toastPasswordError = 'Passwords did not match';
-  static String toastUserDataError = 'Data must be different';
-  static String toastUserUpdated = 'User updated';
-  static String toastLogsDeleted = 'Logs deleted';
-  static String toastCategoryAdded = 'Category added';
-  static String toastCategoryUpdated = 'Category updated';
-  static String toastCategoryDeleted = 'Category deleted';
-  static String toastBlogAdded = 'Blog added';
-  static String toastBlogUpdated = 'Blog updated';
-  static String toastBlogDeleted = 'Blog deleted';
-  static String toastContentAdded = 'Content added';
-  static String toastContentUpdated = 'Content updated';
-  static String toastContentDeleted = 'Content deleted';
-  static String toastImageAdded = 'Image added';
-  static String toastImageUpdated = 'Image updated';
+  // static String toastLoaded = 'Loaded';
+  // static String toastError = 'Error';
+  // static String toastNull = 'Null';
+  // static String toastLoginError = 'Username or password invalid';
+  // static String toastUserAdded = 'User added';
+  // static String toastPasswordError = 'Passwords did not match';
+  // static String toastUserDataError = 'Data must be different';
+  // static String toastUserUpdated = 'User updated';
+  // static String toastLogsDeleted = 'Logs deleted';
+  // static String toastCategoryAdded = 'Category added';
+  // static String toastCategoryUpdated = 'Category updated';
+  // static String toastCategoryDeleted = 'Category deleted';
+  // static String toastBlogAdded = 'Blog added';
+  // static String toastBlogUpdated = 'Blog updated';
+  // static String toastBlogDeleted = 'Blog deleted';
+  // static String toastContentAdded = 'Content added';
+  // static String toastContentUpdated = 'Content updated';
+  // static String toastContentDeleted = 'Content deleted';
+  // static String toastImageAdded = 'Image added';
+  // static String toastImageUpdated = 'Image updated';
 
   // appbar title
   static String editImagePageTitle = 'Edit';
 
   // backend
-
   static String url = domainName;
   static String loginURL = '$url/api/v1/user/login';
   static String registerURL = '$url/api/v1/user/register';

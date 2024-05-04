@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/constants/constants.dart';
 import '../../../core/models/blog.dart';
 import '../blog_repository.dart';
 
@@ -22,12 +21,12 @@ class BlogBloc extends Bloc<BlogEvent, BlogState> {
         int? status = await _repository.addBlog(event.blog);
 
         if (status == 200) {
-          emit(BlogSuccessState(Const.toastBlogAdded, status!));
+          emit(BlogSuccessState());
         } else {
-          emit(BlogErrorState(Const.toastError, status));
+          emit(BlogErrorState());
         }
       } else {
-        emit(BlogErrorState(Const.toastNull, null));
+        emit(BlogErrorState());
       }
     });
 
@@ -42,12 +41,12 @@ class BlogBloc extends Bloc<BlogEvent, BlogState> {
         int? status = await _repository.updateBlog(event.blog);
 
         if (status == 200) {
-          emit(BlogSuccessState(Const.toastBlogUpdated, status!));
+          emit(BlogSuccessState());
         } else {
-          emit(BlogErrorState(Const.toastError, status));
+          emit(BlogErrorState());
         }
       } else {
-        emit(BlogErrorState(Const.toastNull, null));
+        emit(BlogErrorState());
       }
     });
 
@@ -55,9 +54,9 @@ class BlogBloc extends Bloc<BlogEvent, BlogState> {
       int? status = await _repository.deleteBlog(event.id);
 
       if (status == 200) {
-        emit(BlogSuccessState(Const.toastBlogDeleted, status!));
+        emit(BlogSuccessState());
       } else {
-        emit(BlogErrorState(Const.toastError, status));
+        emit(BlogErrorState());
       }
     });
   }

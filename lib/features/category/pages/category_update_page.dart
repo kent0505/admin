@@ -79,12 +79,10 @@ class _CategoryUpdatePageState extends State<CategoryUpdatePage> {
             listener: (context, state) {
               if (state is CategorySuccessState) {
                 context.pop();
-                context
-                    .read<HomeBloc>()
-                    .add(LoadHomeEvent(state.message, state.status));
+                context.read<HomeBloc>().add(LoadHomeEvent());
               }
               if (state is CategoryErrorState) {
-                showToast(context, state.message, state.status, true);
+                showToast(context, 'CategoryErrorState', true);
               }
             },
             child: BlocBuilder<CategoryBloc, CategoryState>(

@@ -67,12 +67,10 @@ class _ContentAddImageState extends State<ContentAddImage> {
           listener: (context, state) {
             if (state is ImageSuccessState) {
               context.pop();
-              context
-                  .read<HomeBloc>()
-                  .add(LoadHomeEvent(Const.toastImageAdded, state.status));
+              context.read<HomeBloc>().add(LoadHomeEvent());
             }
             if (state is ImageErrorState) {
-              showToast(context, state.message, state.status, true);
+              showToast(context, 'ImageErrorState', true);
             }
           },
           child: BlocBuilder<ImageBloc, ImageState>(

@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/constants/constants.dart';
 import '../../../core/models/content.dart';
 import '../../../core/utils.dart';
 import '../../content/content_repository.dart';
@@ -64,12 +63,12 @@ class ImageBloc extends Bloc<ImageEvent, ImageState> {
         image = null;
 
         if (status == 200) {
-          emit(ImageSuccessState(Const.toastImageAdded, status!));
+          emit(ImageSuccessState());
         } else {
-          emit(ImageErrorState(Const.toastError, status));
+          emit(ImageErrorState());
         }
       } else {
-        emit(ImageErrorState(Const.toastNull, null));
+        emit(ImageErrorState());
       }
     });
 
@@ -84,17 +83,17 @@ class ImageBloc extends Bloc<ImageEvent, ImageState> {
         image = null;
 
         if (status == 200) {
-          emit(ImageSuccessState(Const.toastImageUpdated, status!));
+          emit(ImageSuccessState());
         } else {
-          emit(ImageErrorState(Const.toastError, status));
+          emit(ImageErrorState());
         }
       } else {
         int? status = await _contentRepository.updateContent(event.content);
 
         if (status == 200) {
-          emit(ImageSuccessState(Const.toastContentUpdated, status!));
+          emit(ImageSuccessState());
         } else {
-          emit(ImageErrorState(Const.toastError, status!));
+          emit(ImageErrorState());
         }
       }
     });
@@ -103,9 +102,9 @@ class ImageBloc extends Bloc<ImageEvent, ImageState> {
       int? status = await _contentRepository.deleteContent(event.content);
 
       if (status == 200) {
-        emit(ImageSuccessState(Const.toastContentDeleted, status!));
+        emit(ImageSuccessState());
       } else {
-        emit(ImageErrorState(Const.toastError, status!));
+        emit(ImageErrorState());
       }
     });
   }

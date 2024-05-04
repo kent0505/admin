@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/constants/constants.dart';
 import '../../../core/models/content.dart';
 import '../content_repository.dart';
 
@@ -18,12 +17,12 @@ class ContentBloc extends Bloc<ContentEvent, ContentState> {
         int? status = await _repository.addContent(event.content);
 
         if (status == 200) {
-          emit(ContentSuccessState(Const.toastContentAdded, status!));
+          emit(ContentSuccessState());
         } else {
-          emit(ContentErrorState(Const.toastError, status!));
+          emit(ContentErrorState());
         }
       } else {
-        emit(ContentErrorState(Const.toastNull, null));
+        emit(ContentErrorState());
       }
     });
 
@@ -34,12 +33,12 @@ class ContentBloc extends Bloc<ContentEvent, ContentState> {
         int? status = await _repository.updateContent(event.content);
 
         if (status == 200) {
-          emit(ContentSuccessState(Const.toastContentUpdated, status!));
+          emit(ContentSuccessState());
         } else {
-          emit(ContentErrorState(Const.toastError, status!));
+          emit(ContentErrorState());
         }
       } else {
-        emit(ContentErrorState(Const.toastNull, null));
+        emit(ContentErrorState());
       }
     });
 
@@ -47,9 +46,9 @@ class ContentBloc extends Bloc<ContentEvent, ContentState> {
       int? status = await _repository.deleteContent(event.content);
 
       if (status == 200) {
-        emit(ContentSuccessState(Const.toastContentDeleted, status!));
+        emit(ContentSuccessState());
       } else {
-        emit(ContentErrorState(Const.toastError, status));
+        emit(ContentErrorState());
       }
     });
   }

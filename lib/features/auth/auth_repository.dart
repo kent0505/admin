@@ -1,11 +1,26 @@
 import 'package:dio/dio.dart';
 
 import '../../core/constants/constants.dart';
-import '../../core/network/dio_options.dart';
-import '../../core/network/result.dart';
+import '../../core/utils.dart';
 
 class AuthRepository {
-  Future<Result> login(String username, String password) async {
+  late Dio dio;
+
+  AuthRepository() {
+    final options = BaseOptions(
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+      receiveDataWhenStatusError: true,
+      connectTimeout: const Duration(seconds: 5),
+      receiveTimeout: const Duration(seconds: 5),
+    );
+
+    dio = Dio(options);
+  }
+
+  Future<AuthResult> login(String username, String password) async {
     try {
       final response = await dio.post(
         Const.loginURL,
@@ -19,21 +34,16 @@ class AuthRepository {
       );
 
       if (response.statusCode == 200) {
-        return LoginSuccessResult(
-          response.data['access_token'],
-        );
+        return AuthLoginSuccessResult(token: response.data['access_token']);
       } else {
-        return ErrorResult(
-          response.data['detail'],
-          response.statusCode!,
-        );
+        return ErrorResult();
       }
     } catch (e) {
-      return ServerErrorResult();
+      return ErrorResult();
     }
   }
 
-  Future<Result> register(String username, String password) async {
+  Future<AuthResult> register(String username, String password) async {
     try {
       final response = await dio.post(
         Const.registerURL,
@@ -47,18 +57,23 @@ class AuthRepository {
       );
 
       if (response.statusCode == 200) {
-        return RegisterSuccessResult(
-          response.data['detail'],
-          response.statusCode!,
-        );
+        return AuthRegisterSuccessResult();
       } else {
-        return ErrorResult(
-          response.data['detail'],
-          response.statusCode!,
-        );
+        return ErrorResult();
       }
     } catch (e) {
-      return ServerErrorResult();
+      return ErrorResult();
     }
   }
 }
+
+abstract class AuthResult {}
+
+class AuthLoginSuccessResult extends AuthResult {
+  final String token;
+  AuthLoginSuccessResult({required this.token});
+}
+
+class AuthRegisterSuccessResult extends AuthResult {}
+
+class ErrorResult extends AuthResult {}

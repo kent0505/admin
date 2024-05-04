@@ -1,10 +1,26 @@
 import 'package:dio/dio.dart';
 
 import '../../core/constants/constants.dart';
-import '../../core/network/dio_options.dart';
 import '../../core/models/category.dart';
+import '../../core/utils.dart';
 
 class CategoryRepository {
+  late Dio dio;
+
+  CategoryRepository() {
+    final options = BaseOptions(
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+      receiveDataWhenStatusError: true,
+      connectTimeout: const Duration(seconds: 5),
+      receiveTimeout: const Duration(seconds: 5),
+    );
+
+    dio = Dio(options);
+  }
+
   Future<int?> addCategory(CategoryModel category) async {
     try {
       final response = await dio.post(
@@ -14,7 +30,6 @@ class CategoryRepository {
           'index': int.parse(category.index),
           'type': int.parse(category.type),
         },
-        options: options,
       );
       return response.statusCode!;
     } on DioException catch (e) {
@@ -34,7 +49,6 @@ class CategoryRepository {
           'index': int.parse(category.index),
           'type': int.parse(category.type),
         },
-        options: options,
       );
       return response.statusCode!;
     } on DioException catch (e) {
@@ -46,10 +60,7 @@ class CategoryRepository {
 
   Future<int?> deleteCategory(int id) async {
     try {
-      final response = await dio.delete(
-        '${Const.categoryURL}$id',
-        options: options,
-      );
+      final response = await dio.delete('${Const.categoryURL}$id');
       return response.statusCode!;
     } on DioException catch (e) {
       return e.response!.statusCode;

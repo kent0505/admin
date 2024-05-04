@@ -72,7 +72,7 @@ class _DrawerHeader extends StatelessWidget {
                       context,
                       Const.alertLogout,
                       () async {
-                        await saveData('token', '').then((_) {
+                        await logout().then((_) {
                           context.go(AppRoutes.authPage);
                         });
                       },

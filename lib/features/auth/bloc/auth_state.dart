@@ -16,26 +16,8 @@ class AuthRegisterLoadingState extends AuthState {}
 
 class AuthLoginSuccessState extends AuthState {}
 
-class AuthRegisterSuccessState extends AuthState {
-  final String message;
-  final int status;
-  AuthRegisterSuccessState(
-    this.message,
-    this.status,
-  );
-}
+class AuthRegisterSuccessState extends AuthState {}
 
-class AuthErrorState extends AuthState {
-  final String message;
-  final int status;
-  AuthErrorState(
-    this.message,
-    this.status,
-  );
-}
+class AuthErrorState extends AuthState {}
 
-class AuthNullState extends AuthState {
-  final String message;
-  final int? status;
-  AuthNullState(this.message, this.status);
-}
+class AuthNullState extends AuthState {}

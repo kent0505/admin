@@ -4,5 +4,5 @@ abstract class TabEvent {}
 
 class ChangeTabEvent extends TabEvent {
   final int index;
-  ChangeTabEvent(this.index);
+  ChangeTabEvent({required this.index});
 }

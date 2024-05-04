@@ -2,29 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/constants/constants.dart';
 import '../../../core/models/content.dart';
 import '../../../core/router.dart';
 import '../../../core/widgets/data/data_widget.dart';
 import '../../../core/widgets/data/header_widget.dart';
-import '../../home/bloc/home/home_bloc.dart';
-import '../../home/bloc/tab/tab_bloc.dart';
+import '../bloc/home/home_bloc.dart';
+import '../bloc/tab/tab_bloc.dart';
 
 class ContentsList extends StatelessWidget {
-  const ContentsList({
-    super.key,
-    required this.contents,
-  });
+  const ContentsList({super.key, required this.contents});
 
   final List<Content> contents;
 
   @override
   Widget build(BuildContext context) {
-    context.read<TabBloc>().add(ChangeTabEvent(2));
+    context.read<TabBloc>().add(ChangeTabEvent(index: 2));
 
     return RefreshIndicator(
       onRefresh: () async {
-        context.read<HomeBloc>().add(LoadHomeEvent(Const.toastLoaded, 200));
+        context.read<HomeBloc>().add(LoadHomeEvent());
       },
       child: ListView(
         padding: const EdgeInsets.symmetric(vertical: 10),

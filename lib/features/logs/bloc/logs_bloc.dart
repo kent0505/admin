@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/constants/constants.dart';
-import '../../../core/network/dio_options.dart';
+import '../logs_repository.dart';
 
 part 'logs_event.dart';
 part 'logs_state.dart';
 
 class LogsBloc extends Bloc<LogsEvent, LogsState> {
+  final _repository = LogsRepository();
   Timer? _timer;
 
   LogsBloc() : super(LogsInitial()) {
@@ -31,42 +31,28 @@ class LogsBloc extends Bloc<LogsEvent, LogsState> {
     });
 
     on<LoadLogsEvent>((event, emit) async {
-      try {
-        final response = await dio.get(
-          Const.logsURL,
-          options: options,
-        );
+      emit(LogsLoadingState());
 
-        if (response.statusCode == 200) {
-          final lines = response.data['lines'];
-          final logs = response.data['logs'];
-          emit(LogsLoadedState(
-            lines,
-            List<String>.from(logs).reversed.toList(),
-          ));
-        } else {
-          emit(LogsErrorState(Const.toastError, response.statusCode!));
-        }
-      } catch (e) {
-        print(e);
-        emit(LogsErrorState(Const.toastError, 500));
+      LogsResult result = await _repository.getLogs();
+
+      if (result is LogsLoadedResult) {
+        emit(LogsLoadedState(
+          lines: result.lines,
+          logs: result.logs,
+        ));
+      } else {
+        emit(LogsErrorState());
       }
     });
 
     on<DeleteLogsEvent>((event, emit) async {
-      try {
-        final response = await dio.get(
-          Const.deleteLogsURL,
-          options: options,
-        );
+      emit(LogsLoadingState());
+      int status = await _repository.deleteLogs();
 
-        if (response.statusCode == 200) {
-          emit(LogsDeletedState(Const.toastLogsDeleted, response.statusCode!));
-        } else {
-          emit(LogsErrorState(Const.toastError, response.statusCode!));
-        }
-      } catch (e) {
-        emit(LogsErrorState(Const.toastError, 500));
+      if (status == 200) {
+        emit(LogsDeletedState());
+      } else {
+        emit(LogsErrorState());
       }
     });
   }
