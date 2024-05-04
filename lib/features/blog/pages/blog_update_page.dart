@@ -82,7 +82,7 @@ class _BlogUpdatePageState extends State<BlogUpdatePage> {
                     .add(LoadHomeEvent(state.message, state.status));
               }
               if (state is BlogErrorState) {
-                Utils.showToast(context, state.message, state.status, true);
+                showToast(context, state.message, state.status, true);
               }
             },
             child: BlocBuilder<BlogBloc, BlogState>(

@@ -5,6 +5,7 @@ import 'package:http_parser/http_parser.dart';
 
 import '../../core/constants/constants.dart';
 import '../../core/models/content.dart';
+import '../../core/utils.dart';
 
 class ImageRepository {
   final _dio = Dio();
@@ -12,7 +13,7 @@ class ImageRepository {
   final _options = Options(
     headers: {
       'Content-Type': 'multipart/form-data',
-      'Authorization': 'Bearer ${Const.token}',
+      'Authorization': 'Bearer $token',
     },
   );
 

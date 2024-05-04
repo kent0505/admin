@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/constants/constants.dart';
-import '../../core/router/app_routes.dart';
-import '../../core/utils.dart';
-import '../../core/widgets/action/app_title.dart';
-import '../../core/widgets/action/logo_widget.dart';
+import '../../../core/constants/constants.dart';
+import '../../../core/router.dart';
+import '../../../core/utils.dart';
+import '../../../core/widgets/action/app_title.dart';
+import '../../../core/widgets/action/logo_widget.dart';
 
 class DrawerWidget extends StatefulWidget {
   const DrawerWidget({super.key});
@@ -60,7 +60,7 @@ class _DrawerHeader extends StatelessWidget {
               const SizedBox(width: 5),
               Expanded(
                 child: AppTitle(
-                  title: Const.username,
+                  title: username,
                   white: true,
                 ),
               ),
@@ -68,11 +68,11 @@ class _DrawerHeader extends StatelessWidget {
                 message: Const.tooltipLogout,
                 child: IconButton(
                   onPressed: () {
-                    Utils.showAlertDialog(
+                    showAlertDialog(
                       context,
                       Const.alertLogout,
                       () async {
-                        await Utils.saveData('token', '').then((_) {
+                        await saveData('token', '').then((_) {
                           context.go(AppRoutes.authPage);
                         });
                       },

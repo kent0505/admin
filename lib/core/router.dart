@@ -1,25 +1,40 @@
 import 'package:go_router/go_router.dart';
 
-import '../../features/splash/splash_page.dart';
-import '../../features/auth/auth_page.dart';
-import '../../features/user/user_page.dart';
-import '../../features/home/home_page.dart';
-import '../../features/web/web_page.dart';
-import '../../features/logs/logs_page.dart';
-import '../../features/category/pages/category_add_page.dart';
-import '../../features/blog/pages/blog_add_page.dart';
-import '../../features/content/pages/content_add_page.dart';
-import '../../features/category/pages/category_update_page.dart';
-import '../../features/blog/pages/blog_update_page.dart';
-import '../../features/content/pages/content_update_page.dart';
-import '../../features/image/image_page.dart';
+import '../features/splash/splash_page.dart';
+import '../features/auth/auth_page.dart';
+import '../features/user/user_page.dart';
+import '../features/home/home_page.dart';
+import '../features/web/web_page.dart';
+import '../features/logs/logs_page.dart';
+import '../features/category/pages/category_add_page.dart';
+import '../features/blog/pages/blog_add_page.dart';
+import '../features/content/pages/content_add_page.dart';
+import '../features/category/pages/category_update_page.dart';
+import '../features/blog/pages/blog_update_page.dart';
+import '../features/content/pages/content_update_page.dart';
+import '../features/image/image_page.dart';
 
-import '../models/category.dart';
-import '../models/blog.dart';
-import '../models/content.dart';
-import 'app_routes.dart';
+import 'models/category.dart';
+import 'models/blog.dart';
+import 'models/content.dart';
 
-GoRouter routerConfig = GoRouter(
+class AppRoutes {
+  static const String splashPage = '/splash';
+  static const String authPage = '/auth';
+  static const String userPage = '/user';
+  static const String homePage = '/home';
+  static const String logsPage = '/logs';
+  static const String webPage = '/web';
+  static const String categoryAddPage = '/category_add';
+  static const String blogAddPage = '/blog_add';
+  static const String contentAddPage = '/content_add';
+  static const String categoryUpdatePage = '/category_update';
+  static const String blogUpdatePage = '/blog_update';
+  static const String contentUpdatePage = '/content_update';
+  static const String imageUpdatePage = '/image_update';
+}
+
+final routerConfig = GoRouter(
   initialLocation: AppRoutes.splashPage,
   routes: [
     GoRoute(

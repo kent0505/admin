@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/router.dart';
 import '../../core/utils.dart';
 import '../../core/constants/constants.dart';
-import '../../core/router/app_routes.dart';
 import '../../core/widgets/action/app_title.dart';
 import '../../core/widgets/action/logo_widget.dart';
 import '../../core/widgets/buttons/auth_button.dart';
@@ -52,13 +52,13 @@ class _AuthPageState extends State<AuthPage> {
                   context.go(AppRoutes.homePage);
                 }
                 if (state is AuthRegisterSuccessState) {
-                  Utils.showToast(context, state.message, state.status);
+                  showToast(context, state.message, state.status);
                 }
                 if (state is AuthErrorState) {
-                  Utils.showToast(context, state.message, state.status, true);
+                  showToast(context, state.message, state.status, true);
                 }
                 if (state is AuthNullState) {
-                  Utils.showToast(context, state.message, state.status, true);
+                  showToast(context, state.message, state.status, true);
                 }
               },
               child: BlocBuilder<AuthBloc, AuthState>(

@@ -84,7 +84,7 @@ class _CategoryUpdatePageState extends State<CategoryUpdatePage> {
                     .add(LoadHomeEvent(state.message, state.status));
               }
               if (state is CategoryErrorState) {
-                Utils.showToast(context, state.message, state.status, true);
+                showToast(context, state.message, state.status, true);
               }
             },
             child: BlocBuilder<CategoryBloc, CategoryState>(

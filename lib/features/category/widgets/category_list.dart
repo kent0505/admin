@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/constants.dart';
 import '../../../core/models/category.dart';
-import '../../../core/router/app_routes.dart';
+import '../../../core/router.dart';
 import '../../../core/widgets/data/data_widget.dart';
 import '../../../core/widgets/data/header_widget.dart';
 import '../../home/bloc/home/home_bloc.dart';

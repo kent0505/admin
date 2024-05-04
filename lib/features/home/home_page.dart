@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/constants/constants.dart';
-import '../../core/router/app_routes.dart';
+import '../../core/router.dart';
 import '../../core/utils.dart';
 import '../../core/widgets/action/error_text.dart';
 import '../../core/widgets/action/loading_widget.dart';
 import '../blog/widgets/blogs_list.dart';
 import '../category/widgets/category_list.dart';
 import '../content/widgets/contents_list.dart';
-import '../drawer/drawer_widget.dart';
+import 'widgets/drawer_widget.dart';
 import 'bloc/home/home_bloc.dart';
 import 'bloc/tab/tab_bloc.dart';
 
@@ -95,15 +95,15 @@ class _HomePageState extends State<HomePage> {
           listener: (context, state) {
             if (state is HomeLoadedState) {
               if (state.message == Const.toastLoaded) {
-                Utils.showToast(context, state.message, state.status);
+                showToast(context, state.message, state.status);
               } else {
-                Utils.showToast(context, state.message, state.status);
-                Utils.showToast(context, Const.toastLoaded, state.status);
+                showToast(context, state.message, state.status);
+                showToast(context, Const.toastLoaded, state.status);
               }
             }
 
             if (state is HomeErrorState) {
-              Utils.showToast(context, state.message, state.status, true);
+              showToast(context, state.message, state.status, true);
             }
           },
           child: BlocBuilder<HomeBloc, HomeState>(

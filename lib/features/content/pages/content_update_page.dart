@@ -79,7 +79,7 @@ class _ContentUpdatePageState extends State<ContentUpdatePage> {
                     .add(LoadHomeEvent(state.message, state.status));
               }
               if (state is ContentErrorState) {
-                Utils.showToast(context, state.message, state.status, true);
+                showToast(context, state.message, state.status, true);
               }
             },
             child: BlocBuilder<ContentBloc, ContentState>(

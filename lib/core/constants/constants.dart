@@ -2,7 +2,6 @@ import 'domain_name.dart';
 
 abstract final class Const {
   static String appTitle = domainName.toUpperCase();
-  static String username = '';
 
   // button
   static String buttonAddText = 'POST';
@@ -56,8 +55,8 @@ abstract final class Const {
   static String editImagePageTitle = 'Edit';
 
   // backend
-  static String token = '';
-  static String url = 'https://$domainName';
+
+  static String url = domainName;
   static String loginURL = '$url/api/v1/user/login';
   static String registerURL = '$url/api/v1/user/register';
   static String updateURL = '$url/api/v1/user/';

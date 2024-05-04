@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'core/router/router.dart';
+import 'core/router.dart';
 import 'core/theme/themes.dart';
-import 'core/utils.dart';
 
 import 'features/auth/bloc/auth_bloc.dart';
 import 'features/user/bloc/user_bloc.dart';
@@ -15,9 +14,8 @@ import 'features/blog/bloc/blog_bloc.dart';
 import 'features/content/bloc/content_bloc.dart';
 import 'features/image/bloc/image_bloc.dart';
 
-void main() async {
+void main() {
   runApp(const MyApp());
-  await Utils.getToken();
 }
 
 class MyApp extends StatelessWidget {
@@ -45,3 +43,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// cd Desktop/backend/fastapi/test2 && source venv/bin/activate
+// uvicorn src.main:app --reload
+// sudo lsof -t -i tcp:8000 | xargs kill -9

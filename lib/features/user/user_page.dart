@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/constants/constants.dart';
-import '../../core/router/app_routes.dart';
+import '../../core/router.dart';
 import '../../core/utils.dart';
 import '../../core/widgets/buttons/save_button.dart';
 import '../../core/widgets/textfields/password_field.dart';
@@ -46,12 +46,12 @@ class _UserPageState extends State<UserPage> {
         child: BlocListener<UserBloc, UserState>(
           listener: (context, state) {
             if (state is UserSuccessState) {
-              Utils.showToast(context, state.message, state.status);
+              showToast(context, state.message, state.status);
               context.go(AppRoutes.authPage);
             }
 
             if (state is UserErrorState) {
-              Utils.showToast(context, state.message, state.status, true);
+              showToast(context, state.message, state.status, true);
             }
           },
           child: BlocBuilder<UserBloc, UserState>(

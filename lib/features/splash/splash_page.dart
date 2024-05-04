@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
 
 import '../../core/constants/constants.dart';
-import '../../core/router/app_routes.dart';
+import '../../core/router.dart';
 import '../../core/utils.dart';
 import '../../core/widgets/action/logo_widget.dart';
 
@@ -16,19 +15,14 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   Future _check() async {
-    await Utils.getToken();
-
-    final decodedToken = JwtDecoder.tryDecode(Const.token);
-    final now = DateTime.now().millisecondsSinceEpoch / 1000;
-
-    Future.delayed(const Duration(seconds: 2), () {
-      if (Const.token.isNotEmpty &&
-          decodedToken != null &&
-          decodedToken['expiry'] >= now) {
-        context.go(AppRoutes.homePage);
-      } else {
-        context.go(AppRoutes.authPage);
-      }
+    await tokenValid().then((valid) {
+      Future.delayed(const Duration(seconds: 2), () {
+        if (valid) {
+          context.go(AppRoutes.homePage);
+        } else {
+          context.go(AppRoutes.authPage);
+        }
+      });
     });
   }
 

@@ -19,7 +19,7 @@ class DeleteButton extends StatelessWidget {
       message: Const.tooltipDelete,
       child: IconButton(
         onPressed: () {
-          Utils.showAlertDialog(
+          showAlertDialog(
             context,
             title,
             onPressed,

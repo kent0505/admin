@@ -32,10 +32,10 @@ class ImageBloc extends Bloc<ImageEvent, ImageState> {
     });
 
     on<PickImageEvent>((event, emit) async {
-      final file = await Utils.pickImage();
+      final file = await pickImage();
 
       if (file != null) {
-        final croppedFile = await Utils.cropImage(file.path);
+        final croppedFile = await cropImage(file.path);
 
         if (croppedFile != null) {
           image = File(croppedFile.path);

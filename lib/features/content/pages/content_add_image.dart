@@ -72,7 +72,7 @@ class _ContentAddImageState extends State<ContentAddImage> {
                   .add(LoadHomeEvent(Const.toastImageAdded, state.status));
             }
             if (state is ImageErrorState) {
-              Utils.showToast(context, state.message, state.status, true);
+              showToast(context, state.message, state.status, true);
             }
           },
           child: BlocBuilder<ImageBloc, ImageState>(

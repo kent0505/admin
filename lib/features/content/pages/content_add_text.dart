@@ -57,7 +57,7 @@ class _ContentAddTextState extends State<ContentAddText> {
             }
 
             if (state is ContentErrorState) {
-              Utils.showToast(context, state.message, state.status, true);
+              showToast(context, state.message, state.status, true);
             }
           },
           child: BlocBuilder<ContentBloc, ContentState>(

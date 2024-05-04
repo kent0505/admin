@@ -102,7 +102,7 @@ class _ImagePageState extends State<ImagePage> {
                 }
 
                 if (state is ImageErrorState) {
-                  Utils.showToast(context, state.message, state.status, true);
+                  showToast(context, state.message, state.status, true);
                 }
               },
               child: BlocBuilder<ImageBloc, ImageState>(
