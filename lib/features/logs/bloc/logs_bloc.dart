@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,13 +27,12 @@ class LogsBloc extends Bloc<LogsEvent, LogsState> {
     });
 
     on<StopTimerEvent>((event, emit) {
+      log('TIMER STOPPED');
       _timer!.cancel();
       emit(LogsInitial());
     });
 
     on<LoadLogsEvent>((event, emit) async {
-      emit(LogsLoadingState());
-
       LogsResult result = await _repository.getLogs();
 
       if (result is LogsLoadedResult) {
@@ -46,7 +46,6 @@ class LogsBloc extends Bloc<LogsEvent, LogsState> {
     });
 
     on<DeleteLogsEvent>((event, emit) async {
-      emit(LogsLoadingState());
       int status = await _repository.deleteLogs();
 
       if (status == 200) {

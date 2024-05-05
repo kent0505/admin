@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/models/content.dart';
-import '../../../core/router.dart';
 import '../../../core/widgets/data/data_widget.dart';
 import '../../../core/widgets/data/header_widget.dart';
 import '../bloc/home/home_bloc.dart';
@@ -32,9 +31,9 @@ class ContentsList extends StatelessWidget {
               type: 2,
               onTap: () {
                 if (content.image == 0) {
-                  context.push(AppRoutes.contentUpdatePage, extra: content);
+                  context.push('/content_update', extra: content);
                 } else {
-                  context.push(AppRoutes.imageUpdatePage, extra: content);
+                  context.push('/image_update', extra: content);
                 }
               },
               titles: [

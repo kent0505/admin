@@ -14,87 +14,76 @@ import '../features/blog/pages/blog_update_page.dart';
 import '../features/content/pages/content_update_page.dart';
 import '../features/image/image_page.dart';
 
+import 'firebase/notification_page.dart';
 import 'models/category.dart';
 import 'models/blog.dart';
 import 'models/content.dart';
 
-class AppRoutes {
-  static const String splashPage = '/splash';
-  static const String authPage = '/auth';
-  static const String userPage = '/user';
-  static const String homePage = '/home';
-  static const String logsPage = '/logs';
-  static const String webPage = '/web';
-  static const String categoryAddPage = '/category_add';
-  static const String blogAddPage = '/blog_add';
-  static const String contentAddPage = '/content_add';
-  static const String categoryUpdatePage = '/category_update';
-  static const String blogUpdatePage = '/blog_update';
-  static const String contentUpdatePage = '/content_update';
-  static const String imageUpdatePage = '/image_update';
-}
-
 final routerConfig = GoRouter(
-  initialLocation: AppRoutes.splashPage,
+  initialLocation: '/',
   routes: [
     GoRoute(
-      path: AppRoutes.splashPage,
+      path: '/',
       builder: (context, state) => const SplashPage(),
     ),
     GoRoute(
-      path: AppRoutes.authPage,
+      path: '/auth',
       builder: (context, state) => const AuthPage(),
     ),
     GoRoute(
-      path: AppRoutes.userPage,
+      path: '/user',
       builder: (context, state) => const UserPage(),
     ),
     GoRoute(
-      path: AppRoutes.homePage,
+      path: '/home',
       builder: (context, state) => const HomePage(),
     ),
     GoRoute(
-      path: AppRoutes.logsPage,
+      path: '/notification',
+      builder: (context, state) => const NotificationPage(),
+    ),
+    GoRoute(
+      path: '/logs',
       builder: (context, state) => const LogsPage(),
       onExit: (context) => true,
     ),
     GoRoute(
-      path: AppRoutes.webPage,
+      path: '/web',
       builder: (context, state) => const WebPage(),
     ),
     GoRoute(
-      path: AppRoutes.categoryAddPage,
+      path: '/category_add',
       builder: (context, state) => const CategoryAddPage(),
     ),
     GoRoute(
-      path: AppRoutes.blogAddPage,
+      path: '/blog_add',
       builder: (context, state) => const BlogAddPage(),
     ),
     GoRoute(
-      path: AppRoutes.contentAddPage,
+      path: '/content_add',
       builder: (context, state) => const ContentAddPage(),
       onExit: (context) => true,
     ),
     GoRoute(
-      path: AppRoutes.categoryUpdatePage,
+      path: '/category_update',
       builder: (context, state) => CategoryUpdatePage(
         category: state.extra as Category,
       ),
     ),
     GoRoute(
-      path: AppRoutes.blogUpdatePage,
+      path: '/blog_update',
       builder: (context, state) => BlogUpdatePage(
         blog: state.extra as Blog,
       ),
     ),
     GoRoute(
-      path: AppRoutes.contentUpdatePage,
+      path: '/content_update',
       builder: (context, state) => ContentUpdatePage(
         content: state.extra as Content,
       ),
     ),
     GoRoute(
-      path: AppRoutes.imageUpdatePage,
+      path: '/image_update',
       builder: (context, state) => ImagePage(
         content: state.extra as Content,
       ),

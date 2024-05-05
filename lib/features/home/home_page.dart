@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 import '../../core/constants/constants.dart';
-import '../../core/router.dart';
 import '../../core/utils.dart';
 import '../../core/widgets/action/error_text.dart';
 import '../../core/widgets/action/loading_widget.dart';
@@ -30,6 +30,21 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     loadHome();
+    // FirebaseMessaging.instance.getInitialMessage().then(
+    //   (value) {
+    //     if (value != null) {
+    //       log('getInitialMessage');
+    //       context.push(
+    //         '/home/notification',
+    //         // extra: value.notification!.title,
+    //       );
+    //     }
+    //   },
+    // );
+
+    FirebaseMessaging.onMessageOpenedApp.listen(
+      (event) => context.push('/notification'),
+    );
   }
 
   @override
@@ -45,7 +60,7 @@ class _HomePageState extends State<HomePage> {
               message: Const.tooltipOpenUrl,
               child: IconButton(
                 onPressed: () {
-                  context.push(AppRoutes.webPage);
+                  context.push('/web');
                 },
                 icon: const Icon(Icons.language),
               ),
@@ -55,7 +70,7 @@ class _HomePageState extends State<HomePage> {
               child: IconButton(
                 icon: const Icon(Icons.data_array_rounded),
                 onPressed: () {
-                  context.push(AppRoutes.logsPage);
+                  context.push('/logs');
                 },
               ),
             ),
@@ -67,15 +82,15 @@ class _HomePageState extends State<HomePage> {
                     icon: const Icon(Icons.add_rounded),
                     onPressed: () {
                       if (state is TabCategoryState) {
-                        context.push(AppRoutes.categoryAddPage);
+                        context.push('/category_add');
                       }
 
                       if (state is TabBlogState) {
-                        context.push(AppRoutes.blogAddPage);
+                        context.push('/blog_add');
                       }
 
                       if (state is TabContentState) {
-                        context.push(AppRoutes.contentAddPage);
+                        context.push('/content_add');
                       }
                     },
                   ),

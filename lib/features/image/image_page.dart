@@ -97,6 +97,7 @@ class _ImagePageState extends State<ImagePage> {
             BlocListener<ImageBloc, ImageState>(
               listener: (context, state) {
                 if (state is ImageSuccessState) {
+                  showToast(context, 'ImageSuccessState');
                   context.pop();
                   context.read<HomeBloc>().add(LoadHomeEvent());
                 }
@@ -110,7 +111,7 @@ class _ImagePageState extends State<ImagePage> {
                   return SaveButton(
                     title: Const.buttonUpdateText,
                     loading: state is ImageLoadingState,
-                    onTap: () {
+                    onPressed: () {
                       context.read<ImageBloc>().add(UpdateImageEvent(
                             content: Content(
                               id: widget.content.id,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/utils.dart';
 import '../../core/widgets/buttons/delete_button.dart';
 import '../home/bloc/home/home_bloc.dart';
 import 'bloc/logs_bloc.dart';
@@ -49,12 +50,14 @@ class _LogsPageState extends State<LogsPage> {
         body: BlocListener<LogsBloc, LogsState>(
           listener: (context, state) {
             if (state is LogsDeletedState) {
+              showToast(context, 'LogsDeletedState');
               context.pop();
+              context.read<LogsBloc>().add(StopTimerEvent());
               context.read<HomeBloc>().add(LoadHomeEvent());
             }
 
             if (state is LogsErrorState) {
-              // showToast(context, state.message, state.status, true);
+              showToast(context, 'LogsErrorState', true);
             }
           },
           child: BlocBuilder<LogsBloc, LogsState>(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/constants.dart';
-import '../../../core/router.dart';
 import '../../../core/utils.dart';
 import '../../../core/widgets/action/app_title.dart';
 import '../../../core/widgets/action/logo_widget.dart';
@@ -24,7 +23,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           _DrawerHeader(),
           ListTile(
             onTap: () {
-              context.push(AppRoutes.userPage);
+              context.push('/user');
             },
             leading: const Icon(Icons.person),
             title: const Text('User'),
@@ -73,7 +72,7 @@ class _DrawerHeader extends StatelessWidget {
                       Const.alertLogout,
                       () async {
                         await logout().then((_) {
-                          context.go(AppRoutes.authPage);
+                          context.go('/auth');
                         });
                       },
                     );

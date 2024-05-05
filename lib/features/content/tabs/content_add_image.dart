@@ -66,6 +66,7 @@ class _ContentAddImageState extends State<ContentAddImage> {
         BlocListener<ImageBloc, ImageState>(
           listener: (context, state) {
             if (state is ImageSuccessState) {
+              showToast(context, 'ImageSuccessState');
               context.pop();
               context.read<HomeBloc>().add(LoadHomeEvent());
             }
@@ -78,7 +79,7 @@ class _ContentAddImageState extends State<ContentAddImage> {
               return SaveButton(
                 title: Const.buttonAddText,
                 loading: state is ImageLoadingState,
-                onTap: () {
+                onPressed: () {
                   context.read<ImageBloc>().add(UploadImageEvent(
                         content: Content(
                           id: 0,

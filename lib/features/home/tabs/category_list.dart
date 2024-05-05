@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/models/category.dart';
-import '../../../core/router.dart';
 import '../../../core/widgets/data/data_widget.dart';
 import '../../../core/widgets/data/header_widget.dart';
 import '../bloc/home/home_bloc.dart';
@@ -30,7 +29,7 @@ class CategoryList extends StatelessWidget {
           for (Category category in categories) ...[
             DataWidget(
               onTap: () {
-                context.push(AppRoutes.categoryUpdatePage, extra: category);
+                context.push('/category_update', extra: category);
               },
               titles: [
                 category.id.toString(),

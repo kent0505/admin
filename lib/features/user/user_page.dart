@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/constants/constants.dart';
-import '../../core/router.dart';
 import '../../core/utils.dart';
 import '../../core/widgets/buttons/save_button.dart';
 import '../../core/widgets/textfields/password_field.dart';
@@ -54,7 +53,7 @@ class _UserPageState extends State<UserPage> {
             if (state is UserSuccessState) {
               showToast(context, 'UserSuccessState');
               logout();
-              context.go(AppRoutes.authPage);
+              context.go('/auth');
             }
 
             if (state is UserErrorState) {
@@ -116,7 +115,7 @@ class _UserPageState extends State<UserPage> {
                   SaveButton(
                     title: 'PUT',
                     loading: state is UserLoadingState,
-                    onTap: () {
+                    onPressed: () {
                       context.read<UserBloc>().add(UpdateEvent(
                             controller1.text,
                             controller2.text,

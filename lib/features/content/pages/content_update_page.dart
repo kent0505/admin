@@ -12,10 +12,7 @@ import '../../home/bloc/home/home_bloc.dart';
 import '../bloc/content_bloc.dart';
 
 class ContentUpdatePage extends StatefulWidget {
-  const ContentUpdatePage({
-    super.key,
-    required this.content,
-  });
+  const ContentUpdatePage({super.key, required this.content});
 
   final Content content;
 
@@ -73,6 +70,7 @@ class _ContentUpdatePageState extends State<ContentUpdatePage> {
           BlocListener<ContentBloc, ContentState>(
             listener: (context, state) {
               if (state is ContentSuccessState) {
+                showToast(context, 'ContentSuccessState');
                 context.pop();
                 context.read<HomeBloc>().add(LoadHomeEvent());
               }
@@ -85,7 +83,7 @@ class _ContentUpdatePageState extends State<ContentUpdatePage> {
                 return SaveButton(
                   title: Const.buttonUpdateText,
                   loading: state is ContentLoadingState,
-                  onTap: () {
+                  onPressed: () {
                     context.read<ContentBloc>().add(UpdateContentEvent(
                           content: Content(
                             id: widget.content.id,

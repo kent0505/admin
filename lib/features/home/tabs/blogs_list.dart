@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/models/blog.dart';
-import '../../../core/router.dart';
 import '../../../core/widgets/data/data_widget.dart';
 import '../../../core/widgets/data/header_widget.dart';
 import '../bloc/home/home_bloc.dart';
@@ -31,7 +30,7 @@ class BlogsList extends StatelessWidget {
             DataWidget(
               type: 1,
               onTap: () {
-                context.push(AppRoutes.blogUpdatePage, extra: blog);
+                context.push('/blog_update', extra: blog);
               },
               titles: [
                 blog.id.toString(),

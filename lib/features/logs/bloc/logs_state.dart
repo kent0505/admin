@@ -4,8 +4,6 @@ abstract class LogsState {}
 
 class LogsInitial extends LogsState {}
 
-class LogsLoadingState extends LogsState {}
-
 class LogsLoadedState extends LogsState {
   final int lines;
   final List<String> logs;

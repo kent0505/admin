@@ -54,6 +54,7 @@ class _CategoryAddPageState extends State<CategoryAddPage> {
           BlocListener<CategoryBloc, CategoryState>(
             listener: (context, state) {
               if (state is CategorySuccessState) {
+                showToast(context, 'CategorySuccessState');
                 context.pop();
                 context.read<HomeBloc>().add(LoadHomeEvent());
               }
@@ -66,7 +67,7 @@ class _CategoryAddPageState extends State<CategoryAddPage> {
                 return SaveButton(
                   title: Const.buttonAddText,
                   loading: state is CategoryLoadingState,
-                  onTap: () {
+                  onPressed: () {
                     context.read<CategoryBloc>().add(AddCategoryEvent(
                           category: CategoryModel(
                             title: controller1.text,

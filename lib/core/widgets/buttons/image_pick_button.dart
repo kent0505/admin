@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
 
 class ImagePickButton extends StatelessWidget {
-  const ImagePickButton({
-    super.key,
-    required this.onPressed,
-  });
+  const ImagePickButton({super.key, required this.onPressed});
 
   final void Function() onPressed;
 

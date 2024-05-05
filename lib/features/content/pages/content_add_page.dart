@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../image/bloc/image_bloc.dart';
-import 'content_add_text.dart';
-import 'content_add_image.dart';
+import '../tabs/content_add_text.dart';
+import '../tabs/content_add_image.dart';
 
 class ContentAddPage extends StatelessWidget {
   const ContentAddPage({super.key});

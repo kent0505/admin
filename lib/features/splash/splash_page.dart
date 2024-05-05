@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/constants/constants.dart';
-import '../../core/router.dart';
 import '../../core/utils.dart';
 import '../../core/widgets/action/logo_widget.dart';
 
@@ -18,9 +17,9 @@ class _SplashPageState extends State<SplashPage> {
     await tokenValid().then((valid) {
       Future.delayed(const Duration(seconds: 2), () {
         if (valid) {
-          context.go(AppRoutes.homePage);
+          context.go('/home');
         } else {
-          context.go(AppRoutes.authPage);
+          context.go('/auth');
         }
       });
     });

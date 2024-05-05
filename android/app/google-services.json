@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "312904979497",
+    "project_id": "admin-360dc",
+    "storage_bucket": "admin-360dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312904979497:android:9f81d402dc037e76f53838",
+        "android_client_info": {
+          "package_name": "com.example.blog"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFZB1ow4giBCEJy6kLu7FMd-O2jl8yXBY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

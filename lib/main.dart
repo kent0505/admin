@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'core/router.dart';
 import 'core/theme/themes.dart';
+import 'core/firebase/firebase_options.dart';
+import 'core/firebase/firebase_api.dart';
 
 import 'features/auth/bloc/auth_bloc.dart';
 import 'features/user/bloc/user_bloc.dart';
@@ -14,7 +17,10 @@ import 'features/blog/bloc/blog_bloc.dart';
 import 'features/content/bloc/content_bloc.dart';
 import 'features/image/bloc/image_bloc.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await FirebaseApi().initNotifications();
   runApp(const MyApp());
 }
 
@@ -39,11 +45,21 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: theme,
         routerConfig: routerConfig,
+        scrollBehavior: const ScrollBehaviorModified(),
       ),
     );
+  }
+}
+
+class ScrollBehaviorModified extends ScrollBehavior {
+  const ScrollBehaviorModified();
+  @override
+  ScrollPhysics getScrollPhysics(BuildContext context) {
+    return const BouncingScrollPhysics();
   }
 }
 
 // cd Desktop/backend/fastapi/test2 && source venv/bin/activate
 // uvicorn src.main:app --reload
 // sudo lsof -t -i tcp:8000 | xargs kill -9
+// adb reverse tcp:8000 tcp:8000

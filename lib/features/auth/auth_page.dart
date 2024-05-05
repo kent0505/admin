@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/router.dart';
 import '../../core/constants/constants.dart';
 import '../../core/widgets/action/app_title.dart';
 import '../../core/widgets/action/logo_widget.dart';
@@ -49,7 +48,8 @@ class _AuthPageState extends State<AuthPage> {
             BlocListener<AuthBloc, AuthState>(
               listener: (context, state) {
                 if (state is AuthLoginSuccessState) {
-                  context.go(AppRoutes.homePage);
+                  showToast(context, 'AuthLoginSuccessState');
+                  context.go('/home');
                 }
 
                 if (state is AuthErrorState) {
@@ -95,7 +95,7 @@ class _AuthPageState extends State<AuthPage> {
                         AuthButton(
                           title: Const.loginText,
                           loading: state is AuthLoginLoadingState,
-                          onTap: () {
+                          onPressed: () {
                             context.read<AuthBloc>().add(AuthLoginEvent(
                                   username: usernameCon.text,
                                   password: passwordCon.text,
@@ -151,7 +151,7 @@ class _AuthPageState extends State<AuthPage> {
                         AuthButton(
                           title: Const.registerText,
                           loading: state is AuthRegisterLoadingState,
-                          onTap: () {
+                          onPressed: () {
                             context.read<AuthBloc>().add(AuthRegisterEvent(
                                   username: usernameCon.text,
                                   password: passwordCon.text,

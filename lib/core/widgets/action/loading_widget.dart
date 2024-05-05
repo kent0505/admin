@@ -2,14 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LoadingWidget extends StatelessWidget {
-  const LoadingWidget({super.key, this.type = 0});
+  const LoadingWidget({super.key, this.dark = true});
 
-  final int type;
+  final bool dark;
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: CupertinoActivityIndicator(color: Colors.black),
+    return Center(
+      child: CupertinoActivityIndicator(
+        color: dark ? Colors.black : Colors.white,
+      ),
     );
   }
 }

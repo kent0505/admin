@@ -78,6 +78,7 @@ class _CategoryUpdatePageState extends State<CategoryUpdatePage> {
           BlocListener<CategoryBloc, CategoryState>(
             listener: (context, state) {
               if (state is CategorySuccessState) {
+                showToast(context, 'CategorySuccessState');
                 context.pop();
                 context.read<HomeBloc>().add(LoadHomeEvent());
               }
@@ -90,7 +91,7 @@ class _CategoryUpdatePageState extends State<CategoryUpdatePage> {
                 return SaveButton(
                   title: Const.buttonUpdateText,
                   loading: state is CategoryLoadingState,
-                  onTap: () {
+                  onPressed: () {
                     context.read<CategoryBloc>().add(UpdateCategoryEvent(
                           category: CategoryModel(
                             id: widget.category.id,

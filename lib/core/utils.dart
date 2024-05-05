@@ -135,7 +135,7 @@ void showToast(
       behavior: SnackBarBehavior.floating,
       backgroundColor: Colors.transparent,
       elevation: 0,
-      width: 200,
+      width: 220,
       content: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(

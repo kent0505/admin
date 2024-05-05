@@ -76,6 +76,7 @@ class _BlogUpdatePageState extends State<BlogUpdatePage> {
           BlocListener<BlogBloc, BlogState>(
             listener: (context, state) {
               if (state is BlogSuccessState) {
+                showToast(context, 'BlogSuccessState');
                 context.pop();
                 context.read<HomeBloc>().add(LoadHomeEvent());
               }
@@ -88,7 +89,7 @@ class _BlogUpdatePageState extends State<BlogUpdatePage> {
                 return SaveButton(
                   title: Const.buttonUpdateText,
                   loading: state is BlogLoadingState,
-                  onTap: () {
+                  onPressed: () {
                     context.read<BlogBloc>().add(UpdateBlogEvent(
                           blog: BlogModel(
                             id: widget.blog.id,

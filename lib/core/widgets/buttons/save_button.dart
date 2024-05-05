@@ -9,17 +9,17 @@ class SaveButton extends StatelessWidget {
     super.key,
     required this.title,
     required this.loading,
-    required this.onTap,
+    required this.onPressed,
   });
 
   final String title;
   final bool loading;
-  final void Function() onTap;
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
-      onPressed: onTap,
+      onPressed: loading ? null : onPressed,
       child: Container(
         height: 50,
         decoration: BoxDecoration(
@@ -29,7 +29,7 @@ class SaveButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
         ),
         child: loading
-            ? const LoadingWidget(type: 1)
+            ? const LoadingWidget()
             : Center(
                 child: Text(
                   title,
@@ -42,38 +42,5 @@ class SaveButton extends StatelessWidget {
               ),
       ),
     );
-    // return Center(
-    //   child: Material(
-    //     borderRadius: BorderRadius.circular(20),
-    //     elevation: 2,
-    //     child: InkWell(
-    //       borderRadius: BorderRadius.circular(20),
-    //       splashFactory: InkRipple.splashFactory,
-    //       radius: 500,
-    //       onTap: loading ? null : onTap,
-    //       child: Ink(
-    //         height: 50,
-    //         width: 200,
-    //         decoration: BoxDecoration(
-    //           color: title == Const.buttonAddText
-    //               ? Colors.greenAccent
-    //               : Colors.orangeAccent,
-    //           borderRadius: BorderRadius.circular(20),
-    //         ),
-    //         child: loading
-    //             ? const LoadingWidget(type: 1)
-    //             : Center(
-    //                 child: Text(
-    //                   title,
-    //                   style: const TextStyle(
-    //                     fontSize: 18,
-    //                     fontWeight: FontWeight.w500,
-    //                   ),
-    //                 ),
-    //               ),
-    //       ),
-    //     ),
-    //   ),
-    // );
   }
 }

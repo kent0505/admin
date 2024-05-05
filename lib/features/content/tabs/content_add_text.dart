@@ -50,6 +50,7 @@ class _ContentAddTextState extends State<ContentAddText> {
         BlocListener<ContentBloc, ContentState>(
           listener: (context, state) {
             if (state is ContentSuccessState) {
+              showToast(context, 'ContentSuccessState');
               context.pop();
               context.read<HomeBloc>().add(LoadHomeEvent());
             }
@@ -63,7 +64,7 @@ class _ContentAddTextState extends State<ContentAddText> {
               return SaveButton(
                 title: Const.buttonAddText,
                 loading: state is ContentLoadingState,
-                onTap: () {
+                onPressed: () {
                   context.read<ContentBloc>().add(AddContentEvent(
                         content: Content(
                           id: 0,
