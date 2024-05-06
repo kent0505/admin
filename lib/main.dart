@@ -12,6 +12,7 @@ import 'features/user/bloc/user_bloc.dart';
 import 'features/home/bloc/home/home_bloc.dart';
 import 'features/home/bloc/tab/tab_bloc.dart';
 import 'features/logs/bloc/logs_bloc.dart';
+import 'features/notification/bloc/notification_bloc.dart';
 import 'features/category/bloc/category_bloc.dart';
 import 'features/blog/bloc/blog_bloc.dart';
 import 'features/content/bloc/content_bloc.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => HomeBloc()),
         BlocProvider(create: (context) => TabBloc()),
         BlocProvider(create: (context) => LogsBloc()),
+        BlocProvider(create: (context) => NotificationBloc()),
         BlocProvider(create: (context) => CategoryBloc()),
         BlocProvider(create: (context) => BlogBloc()),
         BlocProvider(create: (context) => ContentBloc()),
@@ -59,7 +61,8 @@ class ScrollBehaviorModified extends ScrollBehavior {
   }
 }
 
-// cd Desktop/backend/fastapi/test2 && source venv/bin/activate
+// cd Desktop/admin/test2 && source venv/bin/activate
 // uvicorn src.main:app --reload
+// pip install -r requirements.txt
 // sudo lsof -t -i tcp:8000 | xargs kill -9
 // adb reverse tcp:8000 tcp:8000

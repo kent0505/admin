@@ -30,18 +30,6 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     loadHome();
-    // FirebaseMessaging.instance.getInitialMessage().then(
-    //   (value) {
-    //     if (value != null) {
-    //       log('getInitialMessage');
-    //       context.push(
-    //         '/home/notification',
-    //         // extra: value.notification!.title,
-    //       );
-    //     }
-    //   },
-    // );
-
     FirebaseMessaging.onMessageOpenedApp.listen(
       (event) => context.push('/notification'),
     );
@@ -54,8 +42,17 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         drawer: const DrawerWidget(),
         appBar: AppBar(
-          title: Text(Const.appTitle),
+          // title: Text(Const.appTitle),
           actions: [
+            Tooltip(
+              message: 'Notifications',
+              child: IconButton(
+                onPressed: () {
+                  context.push('/notification');
+                },
+                icon: const Icon(Icons.notifications),
+              ),
+            ),
             Tooltip(
               message: Const.tooltipOpenUrl,
               child: IconButton(

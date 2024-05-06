@@ -13,8 +13,7 @@ import '../features/category/pages/category_update_page.dart';
 import '../features/blog/pages/blog_update_page.dart';
 import '../features/content/pages/content_update_page.dart';
 import '../features/image/image_page.dart';
-
-import 'firebase/notification_page.dart';
+import '../features/notification/notification_page.dart';
 import 'models/category.dart';
 import 'models/blog.dart';
 import 'models/content.dart';

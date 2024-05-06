@@ -20,13 +20,17 @@ class AuthRepository {
     dio = Dio(options);
   }
 
-  Future<AuthResult> login(String username, String password) async {
+  Future<AuthResult> login(
+    String username,
+    String password,
+  ) async {
     try {
       final response = await dio.post(
         Const.loginURL,
         data: {
           'username': username,
           'password': password,
+          'fcmtoken': fcmToken,
         },
         options: Options(
           validateStatus: (_) => true,
@@ -50,6 +54,7 @@ class AuthRepository {
         data: {
           'username': username,
           'password': password,
+          'fcmtoken': fcmToken,
         },
         options: Options(
           validateStatus: (_) => true,

@@ -10,6 +10,7 @@ import 'constants/constants.dart';
 
 String token = '';
 String username = '';
+String fcmToken = '';
 
 Future<void> getData() async {
   final prefs = await SharedPreferences.getInstance();
